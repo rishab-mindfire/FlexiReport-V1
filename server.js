@@ -16,12 +16,11 @@ app.use((req, res, next) => {
 app.use('/erd', express.static(path.join(__dirname, 'ERD-diagram')));
 app.use('/report', express.static(path.join(__dirname, 'Report')));
 app.use('/pdf', express.static(path.join(__dirname, 'PDF-Download')));
+app.use('/demoJSON', express.static(path.join(__dirname, 'demoJSON')));
 
 // Default route
 app.get('/', (req, res) => {
-  // res.redirect('/erd');
-  //res.redirect('/report');
-  res.redirect('/pdf');
+  res.redirect('/erd');
 });
 
 app.listen(PORT, () => {

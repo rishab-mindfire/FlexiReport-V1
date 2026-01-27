@@ -400,13 +400,13 @@ const Actions = {
       const groupSel = document.getElementById('group-by-field');
       groupSel.innerHTML = '<option value="">Loading ...</option>';
       list.innerHTML = 'Loading fields...';
-      // setTimeout(async () => {
-      //   const res = await fetch(
-      //     'http://localhost:8000/demoJSON/layoutHeaderJSON.json'
-      //   );
-      //   Store.headers = await res.json();
-      //   this.populateFields();
-      // }, 1000);
+      setTimeout(async () => {
+        const res = await fetch(
+          'http://localhost:8000/demoJSON/layoutHeaderJSON.json',
+        );
+        Store.headers = await res.json();
+        this.populateFields();
+      }, 1000);
     } catch (e) {
       console.log(e);
       Store.headers = [];
@@ -450,15 +450,15 @@ const Actions = {
     document.getElementById('preview-modal').style.display = 'flex';
     out.innerHTML = 'Loading...';
     //call filemkaer script to recieve JSON data
-    FileMaker.PerformScript('GenerateReportJSON');
+    //FileMaker.PerformScript('GenerateReportJSON');
     try {
-      // setTimeout(async () => {
-      //   const res = await fetch(
-      //     'http://localhost:8000/demoJSON/layoutJSON.json'
-      //   );
-      //   Store.data = await res.json();
-      //   this.renderPreviewHTML(schema, out);
-      // }, 1000);
+      setTimeout(async () => {
+        const res = await fetch(
+          'http://localhost:8000/demoJSON/layoutJSON.json',
+        );
+        Store.data = await res.json();
+        this.renderPreviewHTML(schema, out);
+      }, 1000);
     } catch (e) {
       console.log(e);
       Store.data = [];
