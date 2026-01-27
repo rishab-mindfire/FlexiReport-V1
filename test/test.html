@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Fully Dynamic FileMaker SQL Generator</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * GENERATE DYNAMIC SQL
+       * Automatically detects Base Table (t0) and maps Joins (t1, t2).
+       */
+      //generate single line Query for all selected fields
+      function generateSingleLineQuery(sqlMap) {
+        const aliasMap = {};
+        const joins = [];
+        const fields = [];
+        let whereClause = '';
+        let contextTable = '';
+
+        // 1. IDENTIFY CONTEXT (t0)
+        for (const sql of Object.values(sqlMap)) {
+          const contextMatch = sql.match(/'"&([^:]+)::/i);
+          if (contextMatch) {
+            contextTable = contextMatch[1];
+            break;
+          }
+        }
+
+        if (!contextTable)
+          return 'Error: Could not detect FileMaker Table Context.';
+
+        const getAlias = (tbl, lvl) => {
+          if (!aliasMap[tbl]) aliasMap[tbl] = `t${lvl}`;
+          return aliasMap[tbl];
+        };
+
+        const t0 = getAlias(contextTable, 0);
+
+        // 2. PROCESS ENTRIES
+        Object.values(sqlMap).forEach((sql) => {
+          const fieldName = sql.match(/SELECT\s+\\"([^"]+)\\"/i)?.[1];
+
+          // --- NESTED (LEVEL 2) DETECTION ---
+          const nest = sql.match(
+            /FROM\s+\\"([^"]+)\\"\s+WHERE\s+\\"([^"]+)\\"\s*=\s*\(\s*SELECT\s+\\"([^"]+)\\"\s+FROM\s+\\"([^"]+)\\"\s+WHERE\s+\\"([^"]+)\\"\s*=\s*'"\&([^:]+)::([^&]+)\&"'/i,
+          );
+
+          if (nest) {
+            const [_, t2Tbl, t2Fk, t1Pk, t1Tbl, t1Fk, bTbl, bPk] = nest;
+            const t1 = getAlias(t1Tbl, 1);
+            const t2 = getAlias(t2Tbl, 2);
+
+            if (!joins.find((j) => j.includes(`AS ${t1}`)))
+              joins.push(
+                `JOIN \\"${t1Tbl}\\" AS ${t1} ON ${t0}.\\"${bPk}\\" = ${t1}.\\"${t1Fk}\\"`,
+              );
+
+            if (!joins.find((j) => j.includes(`AS ${t2}`)))
+              joins.push(
+                `JOIN \\"${t2Tbl}\\" AS ${t2} ON ${t2}.\\"${t2Fk}\\" = ${t1}.\\"${t1Pk}\\"`,
+              );
+
+            fields.push(`${t2}.\\"${fieldName}\\"`);
+            if (!whereClause)
+              whereClause = `WHERE ${t0}.\\"${bPk}\\" = '" & ${contextTable}::${bPk} & "'`;
+            return;
+          }
+
+          // --- DIRECT (LEVEL 1) DETECTION ---
+          const direct = sql.match(
+            /FROM\s+\\"([^"]+)\\"\s+WHERE\s+\\"([^"]+)\\"\s*=\s*'"\&([^:]+)::([^&]+)\&"'/i,
+          );
+
+          if (direct) {
+            const [_, t1Tbl, t1Fk, bTbl, bPk] = direct;
+
+            if (t1Tbl === contextTable) {
+              // It's actually a Level 0 selection
+              fields.push(`${t0}.\\"${fieldName}\\"`);
+              if (!whereClause)
+                whereClause = `WHERE ${t0}.\\"${t1Fk}\\" = '" & ${contextTable}::${t1Fk} & "'`;
+            } else {
+              const t1 = getAlias(t1Tbl, 1);
+              if (!joins.find((j) => j.includes(`AS ${t1}`)))
+                joins.push(
+                  `JOIN \\"${t1Tbl}\\" AS ${t1} ON ${t0}.\\"${bPk}\\" = ${t1}.\\"${t1Fk}\\"`,
+                );
+
+              fields.push(`${t1}.\\"${fieldName}\\"`);
+              if (!whereClause)
+                whereClause = `WHERE ${t0}.\\"${bPk}\\" = '" & ${contextTable}::${bPk} & "'`;
+            }
+          }
+        });
+
+        return `SELECT DISTINCT ${fields.join(', ')} FROM \\"${contextTable}\\" AS ${t0} ${joins.join(' ')} ${whereClause}`.trim();
+      }
+
+      // TEST CASE
+      const testQuery1 = {
+        CustomerDistrict_t:
+          'SELECT \\"CustomerDistrict_t\\" FROM \\"CustomerAddress\\" WHERE \\"CutomerID_Add_t\\" = (SELECT \\"CustomerAddressID_t\\" FROM \\"Customer\\" WHERE \\"Customer_ID\\" = \'"&Order::CustomerID_t&"\')',
+      };
+      const testQuery2 = {
+        DueAmount_n:
+          'SELECT \\"DueAmount_n\\" FROM \\"Order\\" WHERE \\"OrderID_t\\" = \'"&Order::OrderID_t&"\'',
+        OrderID_t:
+          'SELECT \\"OrderID_t\\" FROM \\"Order\\" WHERE \\"OrderID_t\\" = \'"&Order::OrderID_t&"\'',
+        PaidAmount_n:
+          'SELECT \\"PaidAmount_n\\" FROM \\"Order\\" WHERE \\"OrderID_t\\" = \'"&Order::OrderID_t&"\'',
+        VendorDistrict_t:
+          'SELECT \\"VendorDistrict_t\\" FROM \\"VendorAddress\\" WHERE \\"VendorID_Add_t\\" = (SELECT \\"VendorAddressID_t\\" FROM \\"Vendor\\" WHERE \\"VendorID_t\\" = \'"&Order::VendorID_t&"\')',
+      };
+      const testQuery3 = {
+        Amount_n:
+          'SELECT \\"Amount_n\\" FROM \\"PurchaseOrder\\" WHERE \\"POID_t\\" = \'"&PurchaseOrder::POID_t&"\'',
+        Billed_n:
+          'SELECT \\"Billed_n\\" FROM \\"PurchaseOrder\\" WHERE \\"POID_t\\" = \'"&PurchaseOrder::POID_t&"\'',
+        POID_t:
+          'SELECT \\"POID_t\\" FROM \\"PurchaseOrder\\" WHERE \\"POID_t\\" = \'"&PurchaseOrder::POID_t&"\'',
+        VendorEmail_t:
+          'SELECT \\"VendorEmail_t\\" FROM \\"Vendor\\" WHERE \\"VendorID_t\\" = \'"&PurchaseOrder::VendorID_t&"\'',
+      };
+
+      console.log('sql 1 :', generateSingleLineQuery(testQuery1));
+      console.log('sql 2 :', generateSingleLineQuery(testQuery2));
+      console.log('sql 3 :', generateSingleLineQuery(testQuery3));
+    </script>
+  </body>
+</html>

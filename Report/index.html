@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JS FileMaker-Style Report Builder</title>
+    <!-- Intract js -->
+    <script src="./intract.min.js"></script>
+    <!-- App CSS -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="toolbar">
+      <strong>Report Builder</strong>
+      <button onclick="app.generatePreview()">▶ Preview</button>
+      <button class="secondary" onclick="app.saveSchema()">Save JSON</button>
+      <button class="secondary" onclick="app.clearCanvas()">
+        🗑 Clear Canvas
+      </button>
+      <button class="secondary" onclick="app.loadFromPrompt()">
+        📂 Load JSON
+      </button>
+      <button class="secondary" onclick="app.showFullPreviewHTML()">
+        Get Full Preview HTML
+      </button>
+      <button onclick="saveSchemaToFM()">Save</button>
+    </div>
+
+    <!-- Formatting bar -->
+    <div
+      id="format-bar"
+      style="
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        background: #f1f1f1;
+        border-bottom: 1px solid #ddd;
+      ">
+      <label style="margin-right: 6px; font-size: 13px; color: #333"
+        >Format:</label
+      >
+      <select id="format-fontsize" title="Font size" style="padding: 6px">
+        <option value="10">10px</option>
+        <option value="12">12px</option>
+        <option value="14" selected>14px</option>
+        <option value="16">16px</option>
+        <option value="18">18px</option>
+        <option value="20">20px</option>
+        <option value="24">24px</option>
+        <option value="28">28px</option>
+        <option value="32">32px</option>
+      </select>
+
+      <button id="format-bold" title="Bold" style="padding: 6px 10px">B</button>
+      <button id="format-italic" title="Italic" style="padding: 6px 10px">
+        I
+      </button>
+      <button id="format-underline" title="Underline" style="padding: 6px 10px">
+        U
+      </button>
+
+      <div style="flex: 1"></div>
+      <small style="color: #666"
+        >Select an element then change formatting — preview will reflect
+        styles.</small
+      >
+    </div>
+    <div id="workspace">
+      <div id="toolbox">
+        <strong>Keep Parts</strong>
+        <label><input id="keep-header" type="checkbox" checked /> Header</label>
+        <label><input id="keep-body" type="checkbox" checked /> Body</label>
+        <label><input id="keep-footer" type="checkbox" checked /> Footer</label>
+        <label>
+          <input id="keep-group" type="checkbox" />
+          Group (Sub-summary)
+        </label>
+        <div
+          id="group-controls"
+          style="margin-left: 12px; margin-top: 6px; display: none">
+          <select id="group-by-field" class="groupBy-select"></select>
+
+          <label>
+            <input id="keep-group-header" type="checkbox" checked />
+            Header
+          </label>
+
+          <label>
+            <input id="keep-group-footer" type="checkbox" checked />
+            Footer
+          </label>
+        </div>
+
+        <h3>Fields</h3>
+        <div id="fields-list"></div>
+        <h3>Static</h3>
+        <div class="tool-item tool-label" draggable="true" data-type="label">
+          Text Label
+        </div>
+        <h3>Calculations</h3>
+        <div
+          class="tool-item tool-calc"
+          draggable="true"
+          data-type="calculation"
+          data-function="SUM">
+          SUM
+        </div>
+        <div
+          class="tool-item tool-calc"
+          draggable="true"
+          data-type="calculation"
+          data-function="AVG">
+          AVG
+        </div>
+      </div>
+      <div id="canvas-wrapper">
+        <div class="design-page">
+          <div
+            id="part-header"
+            class="part"
+            data-part="header"
+            data-label="Header">
+            <div class="resize-handle"></div>
+          </div>
+
+          <div
+            id="part-group-header"
+            class="part"
+            data-part="group-header"
+            data-label="Group Header">
+            <div class="resize-handle"></div>
+          </div>
+          <div id="part-body" class="part" data-part="body" data-label="Body">
+            <div class="resize-handle"></div>
+          </div>
+          <div
+            id="part-group-footer"
+            class="part"
+            data-part="group-footer"
+            data-label="Group Footer">
+            <div class="resize-handle"></div>
+          </div>
+          <div
+            id="part-footer"
+            class="part"
+            data-part="footer"
+            data-label="Footer">
+            <div class="resize-handle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="preview-modal">
+      <div id="preview-content-wrapper">
+        <div id="preview-toolbar">
+          <h1 class="preview-title">Full Report Preview</h1>
+          <button
+            class="closeBtn"
+            onclick="
+              document.getElementById('preview-modal').style.display = 'none'
+            "
+            aria-label="Close">
+            X
+          </button>
+        </div>
+        <div id="preview-content"></div>
+      </div>
+    </div>
+
+    <!-- HTML EXPORT MODAL -->
+    <div id="html-modal" style="display: none">
+      <div
+        style="
+          background: #fff;
+          width: 80%;
+          max-width: 900px;
+          padding: 12px;
+          border-radius: 6px;
+          display: flex;
+          flex-direction: column;
+        ">
+        <h3 style="margin: 0 0 8px">Full Preview HTML</h3>
+
+        <textarea
+          id="html-content"
+          spellcheck="false"
+          style="
+            width: 100%;
+            height: 320px;
+            font-family: monospace;
+            font-size: 12px;
+          "></textarea>
+
+        <div style="margin-top: 8px; text-align: right">
+          <button onclick="app.copyPreviewHTML()">Copy</button>
+          <button
+            class="secondary"
+            onclick="
+              document.getElementById('html-modal').style.display = 'none'
+            ">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- APP JS -->
+    <script src="./index.js"></script>
+  </body>
+</html>

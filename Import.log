@@ -1,0 +1,531 @@
+﻿Timestamp	Filename	Error	Message
+2025-12-09 19:59:58.200 +0530	FlexiReports.fmp12	0	Import of scripts from clipboard started
+2025-12-09 19:59:58.207 +0530	receiveJSON	0	script steps imported : 16
+2025-12-09 19:59:58.211 +0530	FlexiReports.fmp12	0	scripts imported : 1
+2025-12-09 19:59:58.215 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 20:05:42.499 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 20:05:42.510 +0530	GoNext::50::Set Variable	102	Field referred to in the calculation “ExecuteSQL (    "SELECT TableNames_t FROM ZZ_DevTablesFieldsConfig WHERE \"___kp_PrimaryKey_t\" = ?" ;    "" ; "" ;    CorrespondentTablesList::<Field Missing>)” is missing.
+2025-12-09 20:05:42.517 +0530	GoNext::75::Set Field	102	Field referred to in the calculation “CorrespondentTablesList::<Field Missing>” is missing.
+2025-12-09 20:05:42.520 +0530	GoNext::76::Set Field	102	Field referred to in the calculation “ExecuteSQL (        "SELECT SourceName FROM DevDataSourceConfig WHERE DevDataSourceID= ?" ;         "" ; "" ;         CorrespondentTablesList::<Field Missing>    )” is missing.
+2025-12-09 20:05:42.522 +0530	GoNext::77::Set Field	102	Field referred to in the calculation “ExecuteSQL (        "SELECT ExternalFileName_f FROM DevDataSourceConfig WHERE DevDataSourceID= ?" ;         "" ; "" ;         CorrespondentTablesList::<Field Missing>    )” is missing.
+2025-12-09 20:05:42.525 +0530	GoNext::78::Set Field	102	Field referred to in the calculation “CorrespondentTablesList::<Field Missing>” is missing.
+2025-12-09 20:05:42.527 +0530	GoNext::79::Set Field	102	Field referred to in the calculation “ExecuteSQL (    "SELECT TableNames_t FROM ZZ_DevTablesFieldsConfig WHERE \"___kp_PrimaryKey_t\" = ?" ;    "" ; "" ;    CorrespondentTablesList::<Field Missing>)” is missing.
+2025-12-09 20:05:42.530 +0530	GoNext::81::Set Field	102	Field referred to in the calculation “CorrespondentTablesList::<Field Missing>” is missing.
+2025-12-09 20:05:42.533 +0530	GoNext::82::Set Field	1204	Field referred to in the calculation “<Table Missing>::<Field Missing>” is missing.
+2025-12-09 20:05:42.535 +0530	GoNext::82::Set Field	102	Field “<unknown>” missing.
+2025-12-09 20:05:42.538 +0530	GoNext	0	script steps imported : 48
+2025-12-09 20:05:42.541 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 20:05:49.085 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 20:05:49.098 +0530	GoNext::8::Set Variable	102	Field referred to in the calculation “ExecuteSQL (    "SELECT TableNames_t FROM ZZ_DevTablesFieldsConfig WHERE \"___kp_PrimaryKey_t\" = ?" ;    "" ; "" ;    CorrespondentTablesList::<Field Missing>)” is missing.
+2025-12-09 20:05:49.106 +0530	GoNext::33::Set Field	102	Field referred to in the calculation “CorrespondentTablesList::<Field Missing>” is missing.
+2025-12-09 20:05:49.110 +0530	GoNext::34::Set Field	102	Field referred to in the calculation “ExecuteSQL (        "SELECT SourceName FROM DevDataSourceConfig WHERE DevDataSourceID= ?" ;         "" ; "" ;         CorrespondentTablesList::<Field Missing>    )” is missing.
+2025-12-09 20:05:49.113 +0530	GoNext::35::Set Field	102	Field referred to in the calculation “ExecuteSQL (        "SELECT ExternalFileName_f FROM DevDataSourceConfig WHERE DevDataSourceID= ?" ;         "" ; "" ;         CorrespondentTablesList::<Field Missing>    )” is missing.
+2025-12-09 20:05:49.116 +0530	GoNext::36::Set Field	102	Field referred to in the calculation “CorrespondentTablesList::<Field Missing>” is missing.
+2025-12-09 20:05:49.119 +0530	GoNext::37::Set Field	102	Field referred to in the calculation “ExecuteSQL (    "SELECT TableNames_t FROM ZZ_DevTablesFieldsConfig WHERE \"___kp_PrimaryKey_t\" = ?" ;    "" ; "" ;    CorrespondentTablesList::<Field Missing>)” is missing.
+2025-12-09 20:05:49.122 +0530	GoNext::39::Set Field	102	Field referred to in the calculation “CorrespondentTablesList::<Field Missing>” is missing.
+2025-12-09 20:05:49.125 +0530	GoNext::40::Set Field	1204	Field referred to in the calculation “<Table Missing>::<Field Missing>” is missing.
+2025-12-09 20:05:49.127 +0530	GoNext::40::Set Field	102	Field “<unknown>” missing.
+2025-12-09 20:05:49.130 +0530	GoNext	0	script steps imported : 48
+2025-12-09 20:05:49.132 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 20:06:24.951 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 20:06:24.962 +0530	AddConfig	0	script steps imported : 22
+2025-12-09 20:06:24.964 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 20:06:28.340 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 20:06:28.349 +0530	AddConfig	0	script steps imported : 22
+2025-12-09 20:06:28.351 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 20:06:55.901 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 20:06:55.920 +0530	EditeConfiguration::37::Set Field	102	Field “<unknown>” missing.
+2025-12-09 20:06:55.923 +0530	EditeConfiguration::38::Set Field	102	Field “<unknown>” missing.
+2025-12-09 20:06:55.934 +0530	EditeConfiguration::42::Set Field	102	Field “<unknown>” missing.
+2025-12-09 20:06:55.938 +0530	EditeConfiguration::52::Set Variable	102	Field referred to in the calculation “CorrespondentTablesList::<Field Missing>” is missing.
+2025-12-09 20:06:55.940 +0530	EditeConfiguration::53::Set Variable	102	Field referred to in the calculation “CorrespondentTablesList::<Field Missing>” is missing.
+2025-12-09 20:06:55.943 +0530	EditeConfiguration::59::Set Field	102	Field “<unknown>” missing.
+2025-12-09 20:06:55.946 +0530	EditeConfiguration::70::Set Field	102	Field “<unknown>” missing.
+2025-12-09 20:06:55.948 +0530	EditeConfiguration::71::Set Field	102	Field “<unknown>” missing.
+2025-12-09 20:06:55.950 +0530	EditeConfiguration::72::Set Field	102	Field “<unknown>” missing.
+2025-12-09 20:06:55.952 +0530	EditeConfiguration	0	script steps imported : 87
+2025-12-09 20:06:55.954 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 20:07:21.186 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 20:07:21.194 +0530	GoBack	0	script steps imported : 36
+2025-12-09 20:07:21.198 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 20:15:20.879 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 20:15:20.886 +0530	SaveConfig	0	script steps imported : 1
+2025-12-09 20:15:20.890 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 20:15:21.427 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 20:15:21.435 +0530	SaveConfig	0	script steps imported : 1
+2025-12-09 20:15:21.437 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 20:38:48.712 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 20:38:48.720 +0530	SaveConfig	0	script steps imported : 1
+2025-12-09 20:38:48.723 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 20:38:49.050 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 20:38:49.059 +0530	SaveConfig	0	script steps imported : 1
+2025-12-09 20:38:49.063 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 20:38:49.276 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 20:38:49.281 +0530	SaveConfig	0	script steps imported : 1
+2025-12-09 20:38:49.283 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 20:42:50.820 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 20:42:50.830 +0530	SaveConfig	0	script steps imported : 1
+2025-12-09 20:42:50.834 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 20:46:03.694 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 20:46:03.704 +0530	EditeConfiguration	0	script steps imported : 1
+2025-12-09 20:46:03.707 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 20:46:03.937 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 20:46:03.940 +0530	EditeConfiguration	0	script steps imported : 1
+2025-12-09 20:46:03.943 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 20:46:30.758 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 20:46:30.767 +0530	EditeConfiguration	0	script steps imported : 1
+2025-12-09 20:46:30.769 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 20:46:48.130 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 20:46:48.140 +0530	EditeConfiguration	0	script steps imported : 1
+2025-12-09 20:46:48.143 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 21:00:51.543 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 21:00:51.552 +0530	SaveConfig	0	script steps imported : 1
+2025-12-09 21:00:51.555 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 21:01:14.138 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 21:01:14.147 +0530	EditeConfiguration	0	script steps imported : 1
+2025-12-09 21:01:14.151 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 21:05:07.176 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 21:05:07.187 +0530	GoBack	0	script steps imported : 1
+2025-12-09 21:05:07.190 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 21:08:48.246 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 21:08:48.255 +0530	SaveConfig	0	script steps imported : 1
+2025-12-09 21:08:48.258 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-09 21:10:10.707 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-09 21:10:10.716 +0530	SaveConfig	0	script steps imported : 1
+2025-12-09 21:10:10.719 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-10 10:20:36.059 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-10 10:20:36.071 +0530	receiveJSON	0	script steps imported : 6
+2025-12-10 10:20:36.073 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-11 16:02:42.321 +0530	FlexiReports.fmp12	0	Import of scripts from clipboard started
+2025-12-11 16:02:42.328 +0530	AssignTableID	0	script steps imported : 29
+2025-12-11 16:02:42.331 +0530	FlexiReports.fmp12	0	scripts imported : 1
+2025-12-11 16:02:42.333 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-11 16:02:54.658 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-11 16:02:54.700 +0530	receiveJSON	0	script steps imported : 1
+2025-12-11 16:02:54.701 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-11 16:09:52.651 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-11 16:09:52.662 +0530	GoBack	0	script steps imported : 7
+2025-12-11 16:09:52.664 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-11 16:28:22.833 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-11 16:28:22.839 +0530	GoNext::10::Set Variable	102	Field referred to in the calculation “ExecuteSQL (    "SELECT TableNames_t FROM ZZ_DevTablesFieldsConfig WHERE \"___kp_PrimaryKey_t\" = ?" ;    "" ; "" ;    CorrespondentTablesList::g_SelectedBaseTable_t)” is missing.
+2025-12-11 16:28:22.840 +0530	GoNext	0	script steps imported : 1
+2025-12-11 16:28:22.842 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-11 16:30:29.606 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-11 16:30:29.616 +0530	SetTableAndFieldsJSON	0	script steps imported : 1
+2025-12-11 16:30:29.619 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-11 16:30:38.507 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-11 16:30:38.515 +0530	SetTableAndFieldsJSON	0	script steps imported : 1
+2025-12-11 16:30:38.516 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-11 16:43:04.366 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-11 16:43:04.370 +0530	EditeConfiguration	0	script steps imported : 1
+2025-12-11 16:43:04.372 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-11 16:46:06.005 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-11 16:46:06.015 +0530	EditeConfiguration	0	script steps imported : 1
+2025-12-11 16:46:06.018 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-11 16:47:41.901 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-11 16:47:41.913 +0530	GoNext	0	script steps imported : 14
+2025-12-11 16:47:41.916 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 10:24:17.189 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 10:24:17.196 +0530	AssignFieldID	0	script steps imported : 1
+2025-12-12 10:24:17.198 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 10:34:41.122 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 10:34:41.132 +0530	GoBack	0	script steps imported : 6
+2025-12-12 10:34:41.135 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 10:35:59.562 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 10:35:59.569 +0530	GoBack	0	script steps imported : 1
+2025-12-12 10:35:59.572 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 10:43:29.425 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 10:43:29.434 +0530	AssignFieldID	0	script steps imported : 1
+2025-12-12 10:43:29.437 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 10:43:44.233 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 10:43:44.240 +0530	AssignFieldID	0	script steps imported : 1
+2025-12-12 10:43:44.242 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 10:48:51.294 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 10:48:51.304 +0530	receiveJSON	0	script steps imported : 1
+2025-12-12 10:48:51.306 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 11:18:03.941 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 11:18:03.950 +0530	AssignFieldID	0	script steps imported : 1
+2025-12-12 11:18:03.952 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 11:56:38.225 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 11:56:38.231 +0530	GoNext	0	script steps imported : 1
+2025-12-12 11:56:38.233 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 11:56:58.605 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 11:56:58.612 +0530	GoNext	0	script steps imported : 5
+2025-12-12 11:56:58.614 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 12:10:48.608 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 12:10:48.615 +0530	GoNext	0	script steps imported : 3
+2025-12-12 12:10:48.617 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 12:22:07.218 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 12:22:07.222 +0530	GoNext	0	script steps imported : 1
+2025-12-12 12:22:07.223 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 12:25:56.184 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 12:25:56.195 +0530	GoNext	0	script steps imported : 4
+2025-12-12 12:25:56.197 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 12:41:14.293 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 12:41:14.303 +0530	GoNext	0	script steps imported : 14
+2025-12-12 12:41:14.305 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 12:47:59.936 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 12:47:59.943 +0530	GoNext	0	script steps imported : 1
+2025-12-12 12:47:59.944 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 12:48:27.314 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 12:48:27.318 +0530	GoBack	0	script steps imported : 1
+2025-12-12 12:48:27.321 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 13:11:12.473 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 13:11:12.484 +0530	EditeConfiguration	0	script steps imported : 7
+2025-12-12 13:11:12.486 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 13:12:45.094 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 13:12:45.103 +0530	EditeConfiguration	0	script steps imported : 7
+2025-12-12 13:12:45.106 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-12 13:17:06.139 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-12 13:17:06.150 +0530	EditeConfiguration	0	script steps imported : 7
+2025-12-12 13:17:06.152 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-15 11:18:44.521 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-15 11:18:44.526 +0530	GenerateReportList	0	script steps imported : 1
+2025-12-15 11:18:44.530 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-15 11:44:51.843 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-15 11:44:51.855 +0530	SetBaseKeyField	0	script steps imported : 3
+2025-12-15 11:44:51.858 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-15 11:45:05.520 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-15 11:45:05.531 +0530	SetBaseTable	0	script steps imported : 5
+2025-12-15 11:45:05.535 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-15 11:46:07.399 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-15 11:46:07.407 +0530	SetBaseKeyField	0	script steps imported : 8
+2025-12-15 11:46:07.410 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-15 13:05:59.896 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-15 13:05:59.904 +0530	SetBaseTable	0	script steps imported : 1
+2025-12-15 13:05:59.906 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-15 13:06:07.334 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-15 13:06:07.339 +0530	SetBaseTable	0	script steps imported : 4
+2025-12-15 13:06:07.343 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-15 13:06:38.981 +0530	FlexiReports.fmp12	0	Import of scripts from clipboard started
+2025-12-15 13:06:38.985 +0530	FlexiReports.fmp12	0	Script “SetBaseTable” imported as “SetBaseTable 2” since a script named “SetBaseTable” already exists.
+2025-12-15 13:06:38.989 +0530	SetBaseTable 2	0	script steps imported : 9
+2025-12-15 13:06:38.992 +0530	FlexiReports.fmp12	0	scripts imported : 1
+2025-12-15 13:06:38.995 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-15 13:22:20.094 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-15 13:22:20.101 +0530	SetBaseTable	0	script steps imported : 2
+2025-12-15 13:22:20.103 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-15 13:23:56.650 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-15 13:23:56.656 +0530	SetBaseTable	0	script steps imported : 3
+2025-12-15 13:23:56.658 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-15 13:24:26.350 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-15 13:24:26.360 +0530	SycnTableFields	0	script steps imported : 3
+2025-12-15 13:24:26.362 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-15 13:36:04.162 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-15 13:36:04.169 +0530	SetBaseTable	0	script steps imported : 1
+2025-12-15 13:36:04.171 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-15 13:46:24.265 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-15 13:46:24.267 +0530	SetBaseTableKeyName	0	script steps imported : 1
+2025-12-15 13:46:24.268 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-15 15:07:44.321 +0530	FlexiReports.fmp12	0	Import operations started
+2025-12-15 15:07:44.345 +0530	FlexiReports.fmp12	0	Import of value lists from clipboard started
+2025-12-15 15:07:44.347 +0530	FlexiReports.fmp12	0	Value list “ConfigurationList” imported as “ConfigurationList 2” since a value list named “ConfigurationList” already exists.
+2025-12-15 15:07:44.351 +0530	FlexiReports.fmp12	0	value lists imported : 1
+2025-12-15 15:07:44.354 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-15 15:07:48.105 +0530	FlexiReports.fmp12	0	Import operations committed
+2025-12-15 15:07:48.113 +0530	FlexiReports.fmp12	0	==================================================================
+2025-12-15 16:34:57.322 +0530	FlexiReports.fmp12	0	Import operations started
+2025-12-15 16:34:57.377 +0530	FlexiReports.fmp12	0	Import of fields from clipboard started
+2025-12-15 16:34:57.382 +0530	zz_WebViewers	0	fields imported : 3
+2025-12-15 16:34:57.384 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-15 16:35:09.964 +0530	FlexiReports.fmp12	0	Import operations committed
+2025-12-15 16:35:09.971 +0530	FlexiReports.fmp12	0	==================================================================
+2025-12-18 18:28:41.276 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-18 18:28:41.282 +0530	SetBaseTableKeyName	0	script steps imported : 4
+2025-12-18 18:28:41.286 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-18 18:32:18.552 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-18 18:32:18.563 +0530	SycnTableFields	0	script steps imported : 4
+2025-12-18 18:32:18.567 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-18 18:33:31.460 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-18 18:33:31.469 +0530	Validation	0	script steps imported : 4
+2025-12-18 18:33:31.473 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-18 18:33:53.115 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-18 18:33:53.119 +0530	Validation	0	script steps imported : 4
+2025-12-18 18:33:53.121 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-18 18:34:14.181 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-18 18:34:14.189 +0530	Validation	0	script steps imported : 4
+2025-12-18 18:34:14.192 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-19 13:44:15.065 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-19 13:44:15.085 +0530	RefreshTables	0	script steps imported : 108
+2025-12-19 13:44:15.087 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-19 14:10:32.033 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-19 14:10:32.065 +0530	JSON-Creation	0	script steps imported : 103
+2025-12-19 14:10:32.068 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-19 14:21:10.101 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-19 14:21:10.128 +0530	SetTableAndFieldsJSON	0	script steps imported : 5
+2025-12-19 14:21:10.130 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-19 14:22:30.697 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-19 14:22:30.706 +0530	RefreshTables	0	script steps imported : 1
+2025-12-19 14:22:30.709 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-29 13:42:53.501 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2025-12-29 13:42:53.509 +0530	GetRecords	0	script steps imported : 42
+2025-12-29 13:42:53.511 +0530	OrderSysPOC.fmp12	0	Import completed
+2025-12-29 13:46:40.647 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-29 13:46:40.652 +0530	GenerateReportList	0	script steps imported : 1
+2025-12-29 13:46:40.654 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-29 13:54:07.641 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2025-12-29 13:54:07.647 +0530	GetRecords	0	script steps imported : 1
+2025-12-29 13:54:07.650 +0530	OrderSysPOC.fmp12	0	Import completed
+2025-12-29 14:15:43.361 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-29 14:15:43.381 +0530	GenerateReportList	0	script steps imported : 51
+2025-12-29 14:15:43.385 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-29 14:16:23.801 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2025-12-29 14:16:23.810 +0530	GetRecords::192::Perform Script	104	Script “GenerateQueryList” missing.
+2025-12-29 14:16:23.818 +0530	GetRecords	0	script steps imported : 55
+2025-12-29 14:16:23.819 +0530	OrderSysPOC.fmp12	0	Import completed
+2025-12-29 14:18:00.434 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-29 14:18:00.444 +0530	GenerateReportList	0	script steps imported : 1
+2025-12-29 14:18:00.446 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-29 14:18:51.217 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-29 14:18:51.227 +0530	GenerateReportList	0	script steps imported : 2
+2025-12-29 14:18:51.230 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-29 14:19:30.406 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-29 14:19:30.417 +0530	GenerateReportList	0	script steps imported : 1
+2025-12-29 14:19:30.419 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-29 14:19:38.328 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-29 14:19:38.338 +0530	GenerateReportList	0	script steps imported : 1
+2025-12-29 14:19:38.341 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-29 14:24:53.710 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2025-12-29 14:24:53.720 +0530	GetRecords	0	script steps imported : 1
+2025-12-29 14:24:53.722 +0530	OrderSysPOC.fmp12	0	Import completed
+2025-12-29 14:27:29.761 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2025-12-29 14:27:29.772 +0530	GetRecords	0	script steps imported : 6
+2025-12-29 14:27:29.774 +0530	OrderSysPOC.fmp12	0	Import completed
+2025-12-29 14:52:10.339 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2025-12-29 14:52:10.348 +0530	GetRecords	0	script steps imported : 1
+2025-12-29 14:52:10.351 +0530	OrderSysPOC.fmp12	0	Import completed
+2025-12-29 17:18:38.048 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-29 17:18:38.059 +0530	SetWebViewer	0	script steps imported : 5
+2025-12-29 17:18:38.061 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-29 18:19:11.328 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-29 18:19:11.334 +0530	OpenTemplateWebViewer	0	script steps imported : 20
+2025-12-29 18:19:11.336 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-29 18:41:47.577 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-29 18:41:47.584 +0530	OpenTemplateWebViewer	0	script steps imported : 2
+2025-12-29 18:41:47.587 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-29 18:45:51.180 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-29 18:45:51.190 +0530	OpenTemplateWebViewer	0	script steps imported : 1
+2025-12-29 18:45:51.192 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-29 18:51:29.065 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-29 18:51:29.074 +0530	OpenTemplateWebViewer	0	script steps imported : 1
+2025-12-29 18:51:29.076 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-29 19:11:09.608 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-29 19:11:09.619 +0530	GenerateReportJSON	0	script steps imported : 2
+2025-12-29 19:11:09.622 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-29 21:12:05.136 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-29 21:12:05.147 +0530	GenerateReportJSON	0	script steps imported : 1
+2025-12-29 21:12:05.150 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-29 21:36:39.121 +0530	FlexiReports.fmp12	0	Import of scripts from clipboard started
+2025-12-29 21:36:39.127 +0530	AddReport	0	script steps imported : 0
+2025-12-29 21:36:39.129 +0530	OnFieldChange::8::Set Field	102	Field referred to in the calculation “RSLN_FieldList__kf_ConfigID::PrimaryKeyID_t” is missing.
+2025-12-29 21:36:39.132 +0530	OnFieldChange::9::Set Field	102	Field “JSONCategory” missing.
+2025-12-29 21:36:39.134 +0530	OnFieldChange	0	script steps imported : 18
+2025-12-29 21:36:39.137 +0530	AddNewReport	0	script steps imported : 9
+2025-12-29 21:36:39.139 +0530	--	0	script steps imported : 0
+2025-12-29 21:36:39.140 +0530	FlexiReports.fmp12	0	scripts imported : 3
+2025-12-29 21:36:39.142 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-30 10:20:57.536 +0530	FlexiReports.fmp12	0	Import of scripts from clipboard started
+2025-12-30 10:20:57.541 +0530	OnFieldChange::8::Set Field	102	Field referred to in the calculation “RSLN_FieldList__kf_ConfigID::PrimaryKeyID_t” is missing.
+2025-12-30 10:20:57.543 +0530	OnFieldChange::9::Set Field	102	Field “JSONCategory” missing.
+2025-12-30 10:20:57.545 +0530	OnFieldChange	0	script steps imported : 18
+2025-12-30 10:20:57.547 +0530	FlexiReports.fmp12	0	scripts imported : 1
+2025-12-30 10:20:57.549 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-30 10:23:34.136 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-30 10:23:34.146 +0530	OnFieldChange::9::Set Field	102	Field referred to in the calculation “RSLN_FieldList__kf_ConfigID::PrimaryKeyID_t” is missing.
+2025-12-30 10:23:34.149 +0530	OnFieldChange	0	script steps imported : 1
+2025-12-30 10:23:34.151 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-30 13:36:39.728 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-30 13:36:39.734 +0530	GenerateReportJSON	0	script steps imported : 1
+2025-12-30 13:36:39.737 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-30 13:41:09.411 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-30 13:41:09.424 +0530	OpenTemplateWebViewer	0	script steps imported : 6
+2025-12-30 13:41:09.426 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-30 13:52:41.301 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-30 13:52:41.310 +0530	OpenTemplateWebViewer	0	script steps imported : 1
+2025-12-30 13:52:41.312 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-30 17:02:38.533 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-30 17:02:38.545 +0530	saveJSON	0	script steps imported : 5
+2025-12-30 17:02:38.548 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-30 17:03:57.034 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-30 17:03:57.038 +0530	saveJSON	0	script steps imported : 1
+2025-12-30 17:03:57.040 +0530	FlexiReports.fmp12	0	Import completed
+2025-12-30 18:46:04.237 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2025-12-30 18:46:04.244 +0530	GenerateReportJSON	0	script steps imported : 1
+2025-12-30 18:46:04.246 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-02 13:54:46.267 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-02 13:54:46.271 +0530	saveJSON	0	script steps imported : 1
+2026-01-02 13:54:46.273 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-02 15:30:56.543 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-02 15:30:56.549 +0530	StarterScrip	0	script steps imported : 1
+2026-01-02 15:30:56.551 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-07 15:31:05.880 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-07 15:31:05.886 +0530	Download	0	script steps imported : 5
+2026-01-07 15:31:05.887 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-13 15:08:41.848 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-13 15:08:41.856 +0530	GoNext	0	script steps imported : 1
+2026-01-13 15:08:41.858 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-13 15:12:38.595 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-13 15:12:38.606 +0530	GoNext	0	script steps imported : 1
+2026-01-13 15:12:38.609 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-13 15:13:25.517 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-13 15:13:25.526 +0530	AssignFieldID	0	script steps imported : 1
+2026-01-13 15:13:25.529 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-13 15:14:18.677 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-13 15:14:18.682 +0530	AssignTableID	0	script steps imported : 1
+2026-01-13 15:14:18.685 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-13 15:21:18.629 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-13 15:21:18.638 +0530	AssignFieldID	0	script steps imported : 1
+2026-01-13 15:21:18.641 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-13 15:38:07.610 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-13 15:38:07.620 +0530	OnFieldChange	0	script steps imported : 1
+2026-01-13 15:38:07.623 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-13 15:40:10.302 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-13 15:40:10.312 +0530	OnFieldChange	0	script steps imported : 1
+2026-01-13 15:40:10.315 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-13 16:05:43.498 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2026-01-13 16:05:43.509 +0530	SetLayout	0	script steps imported : 1
+2026-01-13 16:05:43.512 +0530	OrderSysPOC.fmp12	0	Import completed
+2026-01-13 16:05:50.506 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2026-01-13 16:05:50.512 +0530	SetLayout	0	script steps imported : 4
+2026-01-13 16:05:50.515 +0530	OrderSysPOC.fmp12	0	Import completed
+2026-01-13 16:08:54.011 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-13 16:08:54.029 +0530	GenerateReportJSON	0	script steps imported : 1
+2026-01-13 16:08:54.031 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-13 16:12:21.221 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2026-01-13 16:12:21.228 +0530	GetRecords	0	script steps imported : 1
+2026-01-13 16:12:21.230 +0530	OrderSysPOC.fmp12	0	Import completed
+2026-01-13 16:21:22.122 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-13 16:21:22.131 +0530	Validation	0	script steps imported : 4
+2026-01-13 16:21:22.134 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-15 14:50:30.953 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-15 14:50:30.955 +0530	DownloadPDF Copy	0	script steps imported : 1
+2026-01-15 14:50:30.955 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-15 15:43:04.546 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-15 15:43:04.558 +0530	DownloadPDF	0	script steps imported : 18
+2026-01-15 15:43:04.561 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-15 15:43:07.469 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-15 15:43:07.477 +0530	DownloadPDF	0	script steps imported : 18
+2026-01-15 15:43:07.481 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-15 16:18:11.806 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-15 16:18:11.810 +0530	OpenTemplateWebViewer	0	script steps imported : 1
+2026-01-15 16:18:11.812 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-15 16:19:53.169 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-15 16:19:53.175 +0530	OpenTemplateWebViewer	0	script steps imported : 1
+2026-01-15 16:19:53.177 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-16 22:12:21.336 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-16 22:12:21.341 +0530	DownloadPDF	0	script steps imported : 1
+2026-01-16 22:12:21.344 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-19 12:27:06.697 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-19 12:27:06.702 +0530	DownloadPDF	0	script steps imported : 1
+2026-01-19 12:27:06.705 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-19 15:14:20.242 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-19 15:14:20.252 +0530	DownloadPDF	0	script steps imported : 1
+2026-01-19 15:14:20.257 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-20 12:34:17.259 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-20 12:34:17.278 +0530	OpenTemplateWebViewer	0	script steps imported : 45
+2026-01-20 12:34:17.281 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-20 12:35:38.993 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-20 12:35:39.004 +0530	OpenTemplateWebViewer	0	script steps imported : 45
+2026-01-20 12:35:39.005 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-20 21:43:43.318 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-20 21:43:43.326 +0530	DownloadPDF::24::Set Variable	102	Field referred to in the calculation “RSP_ReportLines__kf_ReportID::<Field Missing>” is missing.
+2026-01-20 21:43:43.339 +0530	DownloadPDF	0	script steps imported : 55
+2026-01-20 21:43:43.342 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-20 21:45:14.283 +0530	OrderSysPOC.fmp12	0	Import of scripts from clipboard started
+2026-01-20 21:45:14.303 +0530	testPDFChunk	0	script steps imported : 52
+2026-01-20 21:45:14.312 +0530	OrderSysPOC.fmp12	0	scripts imported : 1
+2026-01-20 21:45:14.315 +0530	OrderSysPOC.fmp12	0	Import completed
+2026-01-20 22:50:33.816 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-20 22:50:33.830 +0530	OnFieldChange	0	script steps imported : 33
+2026-01-20 22:50:33.832 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-20 22:52:22.489 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-20 22:52:22.504 +0530	saveJSON	0	script steps imported : 28
+2026-01-20 22:52:22.508 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-20 22:54:32.584 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-20 22:54:32.592 +0530	saveJSON	0	script steps imported : 2
+2026-01-20 22:54:32.596 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-21 19:47:05.982 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-21 19:47:05.987 +0530	DownloadPDF	0	script steps imported : 1
+2026-01-21 19:47:05.989 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-21 19:50:16.915 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-21 19:50:16.922 +0530	saveJSON	0	script steps imported : 1
+2026-01-21 19:50:16.925 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-21 20:06:54.043 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2026-01-21 20:06:54.051 +0530	testPDFChunk	3703	Unknown Error: <unknown>.
+2026-01-21 20:06:54.054 +0530	testPDFChunk	0	script steps imported : 6
+2026-01-21 20:06:54.057 +0530	OrderSysPOC.fmp12	0	Import completed
+2026-01-21 20:07:51.588 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2026-01-21 20:07:51.595 +0530	testPDFChunk	0	script steps imported : 1
+2026-01-21 20:07:51.598 +0530	OrderSysPOC.fmp12	0	Import completed
+2026-01-21 20:08:00.393 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2026-01-21 20:08:00.400 +0530	testPDFChunk	0	script steps imported : 1
+2026-01-21 20:08:00.404 +0530	OrderSysPOC.fmp12	0	Import completed
+2026-01-21 20:12:03.270 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2026-01-21 20:12:03.274 +0530	testPDFChunk	0	script steps imported : 1
+2026-01-21 20:12:03.276 +0530	OrderSysPOC.fmp12	0	Import completed
+2026-01-21 20:12:27.579 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2026-01-21 20:12:27.585 +0530	testPDFChunk	0	script steps imported : 1
+2026-01-21 20:12:27.588 +0530	OrderSysPOC.fmp12	0	Import completed
+2026-01-21 21:26:02.747 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2026-01-21 21:26:02.752 +0530	testPDFChunk	0	script steps imported : 1
+2026-01-21 21:26:02.754 +0530	OrderSysPOC.fmp12	0	Import completed
+2026-01-21 21:29:56.102 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-21 21:29:56.110 +0530	DownloadPDF	0	script steps imported : 2
+2026-01-21 21:29:56.113 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-21 21:31:40.157 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-21 21:31:40.164 +0530	DownloadPDF	0	script steps imported : 1
+2026-01-21 21:31:40.166 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-21 21:35:11.006 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-21 21:35:11.012 +0530	DownloadPDF	0	script steps imported : 1
+2026-01-21 21:35:11.014 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-21 21:37:28.841 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2026-01-21 21:37:28.847 +0530	testPDFChunk	0	script steps imported : 1
+2026-01-21 21:37:28.849 +0530	OrderSysPOC.fmp12	0	Import completed
+2026-01-21 21:37:39.083 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2026-01-21 21:37:39.089 +0530	testPDFChunk	0	script steps imported : 1
+2026-01-21 21:37:39.092 +0530	OrderSysPOC.fmp12	0	Import completed
+2026-01-21 21:37:41.845 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2026-01-21 21:37:41.852 +0530	testPDFChunk	0	script steps imported : 1
+2026-01-21 21:37:41.854 +0530	OrderSysPOC.fmp12	0	Import completed
+2026-01-22 11:00:29.478 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-22 11:00:29.485 +0530	DownloadPDF	0	script steps imported : 2
+2026-01-22 11:00:29.487 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-22 11:01:35.047 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-22 11:01:35.054 +0530	DownloadPDF	0	script steps imported : 1
+2026-01-22 11:01:35.056 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-22 11:02:32.270 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-22 11:02:32.273 +0530	DownloadPDF	0	script steps imported : 1
+2026-01-22 11:02:32.275 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-22 11:04:08.515 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-22 11:04:08.521 +0530	DownloadPDF	0	script steps imported : 27
+2026-01-22 11:04:08.523 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-22 11:05:18.370 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-22 11:05:18.374 +0530	DownloadPDF	0	script steps imported : 1
+2026-01-22 11:05:18.376 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-22 11:12:58.709 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-22 11:12:58.725 +0530	saveSingleStringQuery	0	script steps imported : 6
+2026-01-22 11:12:58.726 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-22 16:03:25.969 +0530	OrderSysPOC.fmp12	0	Import of script steps from clipboard started
+2026-01-22 16:03:25.973 +0530	testPDFChunk	0	script steps imported : 1
+2026-01-22 16:03:25.975 +0530	OrderSysPOC.fmp12	0	Import completed
+2026-01-23 14:47:51.311 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-23 14:47:51.315 +0530	DownloadPDF	0	script steps imported : 1
+2026-01-23 14:47:51.317 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-23 15:33:12.286 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-23 15:33:12.294 +0530	DownloadPDF	0	script steps imported : 1
+2026-01-23 15:33:12.296 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-23 15:33:15.010 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-23 15:33:15.017 +0530	DownloadPDF	0	script steps imported : 1
+2026-01-23 15:33:15.020 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-23 17:44:10.721 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-23 17:44:10.732 +0530	saveSingleStringQuery	0	script steps imported : 1
+2026-01-23 17:44:10.735 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-27 09:28:16.913 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-27 09:28:16.922 +0530	DEL_Table_or_field	0	script steps imported : 4
+2026-01-27 09:28:16.925 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-27 09:30:06.954 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-27 09:30:06.957 +0530	DEL_Table_or_field	0	script steps imported : 1
+2026-01-27 09:30:06.960 +0530	FlexiReports.fmp12	0	Import completed
+2026-01-27 09:30:47.839 +0530	FlexiReports.fmp12	0	Import of script steps from clipboard started
+2026-01-27 09:30:47.846 +0530	DEL_Table_or_field	0	script steps imported : 1
+2026-01-27 09:30:47.849 +0530	FlexiReports.fmp12	0	Import completed
