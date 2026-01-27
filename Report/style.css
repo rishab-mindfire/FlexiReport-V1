@@ -24,7 +24,7 @@ body {
   gap: 20px;
   padding: 0 15px;
 }
-
+ 
 /* Formatting toolbar */
 #format-bar {
   display: flex;
@@ -48,7 +48,7 @@ body {
 #format-fontsize {
   border-radius: 4px;
 }
-
+ 
 button {
   padding: 8px 14px;
   border: none;
@@ -100,7 +100,7 @@ button.secondary {
   background: #fafafa;
   padding: 5px;
 }
-
+ 
 #canvas-wrapper {
   flex: 1;
   padding: 20px;
@@ -109,7 +109,7 @@ button.secondary {
   justify-content: center;
 }
 .design-page {
-  width: 794px;
+  width: 595px;
   background: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   display: flex;
@@ -145,13 +145,13 @@ button.secondary {
   height: 40px;
   background: #eeffe3;
 }
-
+ 
 #part-group-footer {
   height: 40px;
   background: #e0ffd4;
   border-top: 2px solid #999;
 }
-
+ 
 .resize-handle {
   position: absolute;
   left: 0;
@@ -192,12 +192,12 @@ button.secondary {
   border-right: 1px solid rgba(0, 0, 0, 0.1);
   z-index: 10;
 }
-
+ 
 /* Hide drag handles inside preview */
 #preview-modal .drag-handle {
   display: none !important;
 }
-
+ 
 /* Preview modal overlay */
 #preview-modal {
   position: fixed;
@@ -208,7 +208,7 @@ button.secondary {
   align-items: center;
   z-index: 999;
 }
-
+ 
 /* Modal container */
 #preview-content-wrapper {
   position: relative;
@@ -222,7 +222,7 @@ button.secondary {
   flex-direction: column;
   overflow: hidden; /* IMPORTANT */
 }
-
+ 
 /* Sticky toolbar */
 #preview-toolbar {
   padding: 10px;
@@ -243,7 +243,7 @@ button.secondary {
   font-weight: 600;
   text-align: center;
 }
-
+ 
 /* Scrollable preview content */
 #preview-content {
   flex: 1;
@@ -251,94 +251,54 @@ button.secondary {
   overflow-y: auto;
   padding: 20px;
 }
-
+ 
 /* Report elements */
 .r-element {
   position: absolute;
   font-size: 14px;
   white-space: nowrap;
 }
-
+ 
 /* Close button */
 .closeBtn {
   grid-column: 3;
   justify-self: end;
-
+ 
   width: 32px;
   height: 32px;
   border: none;
   background: transparent;
-
+ 
   font-size: 26px;
   font-weight: bold;
   line-height: 1;
   color: #d32f2f;
   cursor: pointer;
 }
-
+ 
 .closeBtn:hover {
   color: #b71c1c;
 }
-
+ 
 .closeBtn:focus {
   outline: none;
 }
-
-/* Force the Preview Page to match Design width */
-.report-page {
-  width: 794px; /* A4 width in pixels */
-  margin: 0 auto;
-  background: white;
-  min-height: 1123px; /* A4 height approx */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-}
-.calc-result {
-  font-size: 12px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-/* Ensure parts don't shrink */
-[class^='r-part-'] {
-  width: 794px !important;
-  flex-shrink: 0;
-  position: relative;
-}
-
-/* Ensure the text area is reachable and looks like an input */
-.element-content[contenteditable='true'] {
-  -webkit-user-select: text !important;
-  user-select: text !important;
-  cursor: text !important;
-  min-height: 100%;
-  width: 100%;
-  outline: none;
-}
-
+ 
 /* Visual cue for the drag handle */
 .drag-handle {
   opacity: 0.5;
   transition: opacity 0.2s;
 }
-
+ 
 .canvas-element:hover .drag-handle {
   opacity: 1;
 }
-
-/* Highlight the box when you are actually typing */
-.element-content[contenteditable='true']:focus {
-  background-color: rgba(255, 255, 255, 1);
-  box-shadow: inset 0 0 0 1px #007bff;
-  display: flex;
-  align-items: center;
-}
-
+ 
 /* Ensure the parent doesn't block children pointer events */
 .canvas-element {
   pointer-events: auto !important;
 }
-
+ 
 /* Report Designer Select */
 .groupBy-select {
   width: 100%;
@@ -346,30 +306,32 @@ button.secondary {
   padding: 6px 10px;
   font-size: 13px;
   line-height: 1.4;
-
+ 
   color: #212529;
   background-color: #ffffff;
-
+ 
   border: 1px solid #ced4da;
   border-radius: 4px;
-
+ 
   outline: none;
   cursor: pointer;
-
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+ 
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
-
+ 
 /* Hover */
 .groupBy-select:hover {
   border-color: #868e96;
 }
-
+ 
 /* Focus */
 .groupBy-select:focus {
   border-color: #339af0;
   box-shadow: 0 0 0 2px rgba(51, 154, 240, 0.2);
 }
-
+ 
 /* Disabled */
 .groupBy-select:disabled {
   background-color: #f1f3f5;

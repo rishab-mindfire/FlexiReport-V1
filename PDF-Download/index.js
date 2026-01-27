@@ -152,16 +152,33 @@ function parseFileMakerData(keys, rows) {
 async function generatePdf() {
   if (!window.jspdf) return alert('Loading PDF engine...');
   const { jsPDF } = window.jspdf;
+
+  // 1. CHANGE TO LANDSCAPE ('l') to fit wide columns (X > 595)
+  // A4 Landscape: 841.89pt width x 595.28pt height
   const doc = new jsPDF('p', 'pt', 'a4');
+
   const pageHeight = doc.internal.pageSize.getHeight();
+  const pageWidth = doc.internal.pageSize.getWidth();
 
   let data = [...reportData];
   let cursorY = 0;
   let currentGroup = null;
   let groupTotal = 0;
-  let grandTotal = 0;
 
-  // 1. Sort Data if grouping is enabled
+  // --- PRE-CALCULATION STEP ---
+  // We must calculate Grand Totals BEFORE rendering, 
+  // otherwise Header calculations will show 0.00
+  const globalTotals = {};
+  data.forEach(row => {
+    Object.keys(row).forEach(key => {
+      const val = parseFloat(row[key]);
+      if (!isNaN(val)) {
+        globalTotals[key] = (globalTotals[key] || 0) + val;
+      }
+    });
+  });
+
+  // 2. Sort Data if grouping is enabled
   if (currentLayout.grouping.enabled && currentLayout.grouping.field) {
     data.sort((a, b) =>
       String(a[currentLayout.grouping.field]).localeCompare(
@@ -170,11 +187,11 @@ async function generatePdf() {
     );
   }
 
-  function renderPart(partName, rowData, total) {
+  function renderPart(partName, rowData, groupSumValue) {
     const part = currentLayout.parts[partName];
     if (!part) return;
 
-    // Check for page overflow
+    // Auto-Page Break
     if (cursorY + part.height > pageHeight - 40) {
       doc.addPage();
       cursorY = 20;
@@ -184,29 +201,47 @@ async function generatePdf() {
     part.elements.forEach((el) => {
       doc.setFontSize(el.fontSize || 12);
       const fontStyle =
-        el.bold && el.italic
-          ? 'bolditalic'
-          : el.bold
-            ? 'bold'
-            : el.italic
-              ? 'italic'
+        el.bold && el.italic ? 'bolditalic'
+          : el.bold ? 'bold'
+            : el.italic ? 'italic'
               : 'normal';
       doc.setFont('helvetica', fontStyle);
 
       let text = '';
+
+      // --- HANDLE CONTENT TYPES ---
       if (el.type === 'label') {
         text = el.content;
-      } else if (el.type === 'field') {
+      }
+      else if (el.type === 'field') {
         let key = el.key || el.content.replace(/[\[\]]/g, '');
         text = rowData ? String(rowData[key] ?? '') : '';
-      } else if (el.type === 'calculation') {
-        text = (total || 0).toLocaleString(undefined, {
+      }
+      else if (el.type === 'calculation') {
+        // Handle Header/Footer Sums
+        let val = 0;
+
+        if (partName === 'header' || partName === 'footer') {
+          // Use Global Pre-calculated Totals for Header/Footer
+          val = globalTotals[el.field] || 0;
+        } else if (partName === 'group-footer' || partName === 'group-header') {
+          // Use the Group Total passed in arguments
+          val = groupSumValue || 0;
+        }
+
+        text = val.toLocaleString(undefined, {
           minimumFractionDigits: 2,
+          maximumFractionDigits: 2
         });
       }
 
+      // --- RENDER TEXT ---
+      // Check X coordinate to ensure it doesn't overflow page
+      // (Optional: You could scale down text here if x > pageWidth)
+
       const absY = cursorY + el.y + el.fontSize;
       doc.text(text, el.x, absY);
+
       if (el.underline) {
         const w = doc.getTextWidth(text);
         doc.line(el.x, absY + 2, el.x + w, absY + 2);
@@ -215,108 +250,194 @@ async function generatePdf() {
     cursorY += part.height;
   }
 
-  // --- Start Rendering ---
+  // --- START RENDERING ---
   renderPart('header', null, null);
 
   data.forEach((row) => {
     const groupVal = row[currentLayout.grouping.field];
 
+    // Handle Group Breaks
     if (currentLayout.grouping.enabled && groupVal !== currentGroup) {
-      if (currentGroup !== null) renderPart('group-footer', null, groupTotal);
+      if (currentGroup !== null) {
+        renderPart('group-footer', null, groupTotal);
+      }
       currentGroup = groupVal;
-      groupTotal = 0;
-      renderPart('group-header', row, null);
+      groupTotal = 0; // Reset group total
+      renderPart('group-header', row, null); // Usually doesn't need total
     }
 
     renderPart('body', row, null);
 
-    // Summing logic (looks for calc field in footer)
-    const calcField =
-      currentLayout.parts['footer']?.elements.find(
-        (e) => e.type === 'calculation',
-      )?.field || 'Paid Amount_t';
-    const val = parseFloat(row[calcField]) || 0;
+    // Accumulate Group Total
+    // We look for the field used in the group-footer to sum up
+    // (Or default to the first numeric field found in schema if needed)
+    const calcEl = currentLayout.parts['group-footer']?.elements.find(e => e.type === 'field' || e.type === 'calculation');
+    const keyToSum = calcEl?.key || calcEl?.field || 'PaidAmount_n'; // Fallback
+
+    const val = parseFloat(row[keyToSum]) || 0;
     groupTotal += val;
-    grandTotal += val;
   });
 
-  if (currentLayout.grouping.enabled && currentGroup !== null)
+  // Final Group Footer
+  if (currentLayout.grouping.enabled && currentGroup !== null) {
     renderPart('group-footer', null, groupTotal);
-  renderPart('footer', null, grandTotal);
+  }
 
-  document.getElementById('preview').src = doc.output('bloburl');
+  // Grand Footer
+  // We pass 0 here because the renderPart logic above now uses globalTotals for Footers
+  renderPart('footer', null, 0);
+
+  // --- OUTPUT TO IFRAME ---
+  const iframe = document.getElementById('preview');
+  if (iframe) {
+    iframe.style.width = '100%';
+    iframe.style.height = '100vh';
+    const blobUrl = doc.output('bloburl');
+    // Force Fit to Width (FitH) to see the full Landscape page
+    iframe.src = blobUrl + '#toolbar=0&view=FitH';
+  }
 }
+
 
 // --- BROWSER SIMULATION ---
 function simulateFileMakerInput() {
   const dummyPayload = {
-    columnHeader: ['Order_id', 'Paid Amount_t', 'District'],
+    columnHeader: [
+      'OrderID_t',
+      'PaidAmount_n',
+      'DueAmount_n',
+      'CustomerName_t',
+      'CustomerDistrict_t'
+    ],
     bodyData: [
-      'ORD-1001^5000.00^Lazio',
-      'ORD-1002^127750.00^Catalonia',
-      'ORD-1003^89700.00^Lazio',
-      'ORD-1004^1500.00^Lazio',
+      'ORD-1001^150.00^50.00^John Smith^New York',
+      'ORD-1002^200.00^0.00^Jane Doe^New York',
+      'ORD-1003^500.00^100.00^Bob Brown^California',
+      'ORD-1004^750.00^0.00^Alice Green^California',
+      'ORD-1005^100.00^20.00^Charlie White^California'
     ],
     schemaJson: {
-      grouping: { enabled: true, field: 'District' },
-      parts: {
-        header: {
-          height: 60,
-          elements: [
+      'grouping': {
+        'enabled': true,
+        'field': 'region'
+      },
+      'parts': {
+        'header': {
+          'height': 101,
+          'elements': [
             {
-              type: 'label',
-              content: 'FILEMAKER DYNAMIC REPORT',
-              x: 40,
-              y: 10,
-              fontSize: 18,
-              bold: true,
-              underline: true,
-            },
-          ],
+              'type': 'calculation',
+              'key': null,
+              'content': '[]',
+              'x': 295,
+              'y': 45,
+              'w': 150,
+              'h': 25,
+              'function': 'SUM',
+              'field': 'DueAmount_n',
+              'fontSize': 16,
+              'bold': true,
+              'italic': false,
+              'underline': false
+            }
+          ]
         },
         'group-header': {
-          height: 30,
-          elements: [
+          'height': 41,
+          'elements': [
             {
-              type: 'field',
-              key: 'District',
-              x: 40,
-              y: 5,
-              fontSize: 14,
-              bold: true,
-            },
-          ],
+              'type': 'field',
+              'key': 'region',
+              'content': '[region]',
+              'x': 21,
+              'y': 4,
+              'w': 150,
+              'h': 25,
+              'function': null,
+              'field': null,
+              'fontSize': 14,
+              'bold': true,
+              'italic': false,
+              'underline': false
+            }
+          ]
         },
-        body: {
-          height: 25,
-          elements: [
-            { type: 'field', key: 'Order_id', x: 60, y: 5, fontSize: 11 },
-            { type: 'field', key: 'Paid Amount_t', x: 450, y: 5, fontSize: 11 },
-          ],
-        },
-        footer: {
-          height: 50,
-          elements: [
+        'body': {
+          'height': 61,
+          'elements': [
             {
-              type: 'label',
-              content: 'GRAND TOTAL',
-              x: 350,
-              y: 15,
-              fontSize: 14,
-              bold: true,
+              'type': 'field',
+              'key': 'region',
+              'content': '[region]',
+              'x': 5,
+              'y': 13,
+              'w': 150,
+              'h': 25,
+              'function': null,
+              'field': null,
+              'fontSize': 14,
+              'bold': false,
+              'italic': false,
+              'underline': false
             },
             {
-              type: 'calculation',
-              field: 'Paid Amount_t',
-              x: 450,
-              y: 15,
-              fontSize: 14,
-              bold: true,
+              'type': 'field',
+              'key': 'OrderID_t',
+              'content': '[OrderID_t]',
+              'x': 523,
+              'y': 13,
+              'w': 65,
+              'h': 20,
+              'function': null,
+              'field': null,
+              'fontSize': 14,
+              'bold': false,
+              'italic': false,
+              'underline': false
             },
-          ],
+            {
+              'type': 'field',
+              'key': 'DueAmount_n',
+              'content': '[DueAmount_n]',
+              'x': 239,
+              'y': 14,
+              'w': 150,
+              'h': 25,
+              'function': null,
+              'field': null,
+              'fontSize': 14,
+              'bold': false,
+              'italic': false,
+              'underline': false
+            }
+          ]
         },
-      },
-    },
+        'group-footer': {
+          'height': 42,
+          'elements': [
+            {
+              'type': 'calculation',
+              'key': null,
+              'content': '[]',
+              'x': 238,
+              'y': 4,
+              'w': 150,
+              'h': 25,
+              'function': 'SUM',
+              'field': 'DueAmount_n',
+              'fontSize': 14,
+              'bold': true,
+              'italic': false,
+              'underline': false
+            }
+          ]
+        },
+        'footer': {
+          'height': 61,
+          'elements': []
+        }
+      }
+    }
   };
 
   receiveFileMakerData(dummyPayload);
