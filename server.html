@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .menu {
+        display: flex;
+        gap: 16px;
+      }
+
+      .menu button {
+        padding: 14px 28px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background: #2563eb;
+        color: #fff;
+        transition: all 0.2s ease;
+      }
+
+      .menu button:hover {
+        background: #1e40af;
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="menu">
+      <button onclick="openPage('/erd')">ERD</button>
+      <button onclick="openPage('/report')">Report</button>
+      <button onclick="openPage('/pdf')">PDF</button>
+    </div>
+
+    <script>
+      function openPage(path) {
+        window.open(path, '_blank');
+      }
+    </script>
+  </body>
+</html>

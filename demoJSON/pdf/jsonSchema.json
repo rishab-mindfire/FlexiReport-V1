@@ -1,0 +1,257 @@
+{
+  "grouping": {
+    "enabled": true,
+    "field": "region"
+  },
+  "parts": {
+    "header": {
+      "height": 157,
+      "elements": [
+        {
+          "type": "label",
+          "key": null,
+          "content": "My header at middle",
+          "x": 256,
+          "y": 26,
+          "w": 241,
+          "h": 27,
+          "function": null,
+          "field": null,
+          "fontSize": 24,
+          "bold": true,
+          "italic": false,
+          "underline": false
+        },
+        {
+          "type": "calculation",
+          "key": null,
+          "content": "[]",
+          "x": 629,
+          "y": 76,
+          "w": 150,
+          "h": 25,
+          "function": "AVG",
+          "field": "DueAmount_n",
+          "fontSize": 24,
+          "bold": false,
+          "italic": false,
+          "underline": false
+        },
+        {
+          "type": "label",
+          "key": null,
+          "content": "Avg at right:",
+          "x": 532,
+          "y": 81,
+          "w": 86,
+          "h": 18,
+          "function": null,
+          "field": null,
+          "fontSize": 14,
+          "bold": true,
+          "italic": false,
+          "underline": false
+        },
+        {
+          "type": "label",
+          "key": null,
+          "content": "Order ID",
+          "x": 15,
+          "y": 127,
+          "w": 95,
+          "h": 22,
+          "function": null,
+          "field": null,
+          "fontSize": 14,
+          "bold": true,
+          "italic": false,
+          "underline": true
+        },
+        {
+          "type": "label",
+          "key": null,
+          "content": "Paid Amount",
+          "x": 164,
+          "y": 124,
+          "w": 150,
+          "h": 25,
+          "function": null,
+          "field": null,
+          "fontSize": 16,
+          "bold": true,
+          "italic": false,
+          "underline": true
+        },
+        {
+          "type": "label",
+          "key": null,
+          "content": "Due Amount",
+          "x": 338,
+          "y": 126,
+          "w": 150,
+          "h": 25,
+          "function": null,
+          "field": null,
+          "fontSize": 16,
+          "bold": true,
+          "italic": false,
+          "underline": true
+        },
+        {
+          "type": "label",
+          "key": null,
+          "content": "Region",
+          "x": 639,
+          "y": 126,
+          "w": 150,
+          "h": 25,
+          "function": null,
+          "field": null,
+          "fontSize": 16,
+          "bold": true,
+          "italic": false,
+          "underline": true
+        }
+      ]
+    },
+    "group-header": {
+      "height": 61,
+      "elements": [
+        {
+          "type": "field",
+          "key": "region",
+          "content": "[region]",
+          "x": 369,
+          "y": 7,
+          "w": 106,
+          "h": 18,
+          "function": null,
+          "field": null,
+          "fontSize": 32,
+          "bold": true,
+          "italic": false,
+          "underline": false
+        }
+      ]
+    },
+    "body": {
+      "height": 51,
+      "elements": [
+        {
+          "type": "field",
+          "key": "OrderID_t",
+          "content": "[OrderID_t]",
+          "x": 12,
+          "y": 12,
+          "w": 150,
+          "h": 25,
+          "function": null,
+          "field": null,
+          "fontSize": 14,
+          "bold": false,
+          "italic": false,
+          "underline": false
+        },
+        {
+          "type": "field",
+          "key": "PaidAmount_n",
+          "content": "[PaidAmount_n]",
+          "x": 167,
+          "y": 11,
+          "w": 150,
+          "h": 25,
+          "function": null,
+          "field": null,
+          "fontSize": 14,
+          "bold": false,
+          "italic": false,
+          "underline": false
+        },
+        {
+          "type": "field",
+          "key": "DueAmount_n",
+          "content": "[DueAmount_n]",
+          "x": 334,
+          "y": 11,
+          "w": 150,
+          "h": 25,
+          "function": null,
+          "field": null,
+          "fontSize": 14,
+          "bold": false,
+          "italic": false,
+          "underline": false
+        },
+        {
+          "type": "field",
+          "key": "region",
+          "content": "[region]",
+          "x": 647,
+          "y": 10,
+          "w": 150,
+          "h": 25,
+          "function": null,
+          "field": null,
+          "fontSize": 18,
+          "bold": true,
+          "italic": false,
+          "underline": false
+        }
+      ]
+    },
+    "group-footer": {
+      "height": 36,
+      "elements": []
+    },
+    "footer": {
+      "height": 159,
+      "elements": [
+        {
+          "type": "calculation",
+          "key": null,
+          "content": "[]",
+          "x": 592,
+          "y": 131,
+          "w": 150,
+          "h": 25,
+          "function": "SUM",
+          "field": "PaidAmount_n",
+          "fontSize": 24,
+          "bold": true,
+          "italic": true,
+          "underline": true
+        },
+        {
+          "type": "label",
+          "key": null,
+          "content": "Total",
+          "x": 458,
+          "y": 137,
+          "w": 92,
+          "h": 19,
+          "function": null,
+          "field": null,
+          "fontSize": 20,
+          "bold": true,
+          "italic": false,
+          "underline": false
+        },
+        {
+          "type": "label",
+          "key": null,
+          "content": "At right footer",
+          "x": 588,
+          "y": 33,
+          "w": 206,
+          "h": 32,
+          "function": null,
+          "field": null,
+          "fontSize": 24,
+          "bold": false,
+          "italic": false,
+          "underline": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,352 @@
+{
+  "tables": [
+    {
+      "fields": [
+        {
+          "id": "D38AEB11-F9BC-6947-8E3C-EED1A36F299E",
+          "name": "CustomerID_t"
+        },
+        {
+          "id": "7A0F6FD2-4247-3C4E-9798-FDD476DC321B",
+          "name": "VendorID_t"
+        },
+        {
+          "id": "F7679CFC-F9E5-F24A-B160-86CE8FC218E6",
+          "name": "OrderID_t"
+        },
+        {
+          "id": "91916619-4EDE-104D-AC12-F1F862B588C3",
+          "name": "PaymentStatus_t"
+        },
+        {
+          "id": "93AC43BC-3507-4042-9B98-7842BBAB5961",
+          "name": "TotalAmount_n"
+        },
+        {
+          "id": "78781947-82DB-4547-9162-D2D2BDB2BD29",
+          "name": "RecePaidTotalAmount"
+        },
+        {
+          "id": "80CF8A1D-8CD1-5E4B-A3B5-0C9092442DD7",
+          "name": "PaidAmount_n"
+        },
+        {
+          "id": "A867B34C-C4A7-1D4E-BFD5-3CDA46854463",
+          "name": "DueAmount_n"
+        }
+      ],
+      "id": "F69E020B-40BA-3546-8CB7-386BD175DDD3",
+      "name": "Order",
+      "position": {
+        "x": -50,
+        "y": 210
+      },
+      "baseTable": true,
+      "baseTableKey": "OrderID_t"
+    },
+    {
+      "fields": [
+        {
+          "id": "8AB620E1-7C7C-9444-AB9D-B55A51A66C6E",
+          "name": "Customer_ID"
+        },
+        {
+          "id": "25E013EB-363B-8A49-8F13-E063037B6E6F",
+          "name": "CustomerAddressID_t"
+        },
+        {
+          "id": "E6ED4986-C545-9C46-B5A5-784307EE9BBD",
+          "name": "CustomerName_t"
+        },
+        {
+          "id": "3173FB22-DA42-7648-8548-7BBA11365AE1",
+          "name": "CustomerEmail_t"
+        },
+        {
+          "id": "74EAA607-6DEC-0240-80B9-77B97C3D6FCD",
+          "name": "CustomerRating_n"
+        },
+        {
+          "id": "DAF43CF6-AC49-FB4F-B473-AE46FAD53059",
+          "name": "CustomerNote_t"
+        },
+        {
+          "id": "83BBBDAC-A109-2945-A1F6-E7F9B31A425F",
+          "name": "CustomerMobile_t"
+        }
+      ],
+      "id": "904E8AD1-2FCB-444A-BBBC-2C4EA0F5EF9C",
+      "name": "Customer",
+      "position": {
+        "x": 360,
+        "y": 110
+      },
+      "baseTable": false
+    },
+    {
+      "fields": [
+        {
+          "id": "9F303315-7BB0-9649-94E3-061A699DDADE",
+          "name": "VendorID_t"
+        },
+        {
+          "id": "2DE6C498-9E47-0C47-A0AB-3B53A5CA32D1",
+          "name": "VendorName_t"
+        },
+        {
+          "id": "9ED25922-900E-CB4A-BC2F-AA1A30486FA2",
+          "name": "VendorEmail_t"
+        },
+        {
+          "id": "F8B937BA-431B-2B4C-8176-266642EFC316",
+          "name": "MobileNo_t"
+        },
+        {
+          "id": "53A2EABB-2B99-264B-8672-8A6B488F90DF",
+          "name": "VendorAddressID_t"
+        }
+      ],
+      "id": "76CD1D67-4E3D-584B-BBE2-3DC2AD5F9A0A",
+      "name": "Vendor",
+      "position": {
+        "x": 380,
+        "y": 330
+      },
+      "baseTable": false
+    },
+    {
+      "fields": [
+        {
+          "id": "713E969F-7C00-5040-9D9B-9C021D746BFB",
+          "name": "CutomerID_Add_t"
+        },
+        {
+          "id": "7546696C-D5F3-5C44-A49F-1C1653991E08",
+          "name": "CutomerCountryName_t"
+        },
+        {
+          "id": "70BFFA05-2213-9C46-A00A-28CCD25D1F21",
+          "name": "CustomerCountryID_t"
+        },
+        {
+          "id": "2DFF58CE-09F6-544E-BAC6-48A4568324F9",
+          "name": "CustomerDistrict_t"
+        },
+        {
+          "id": "5A98BD75-60B2-6541-B777-736C9EF3F4A9",
+          "name": "CustomerPinCode_t"
+        }
+      ],
+      "id": "B48FE549-340B-1648-85F4-600FD2CC9C81",
+      "name": "CustomerAddress",
+      "position": {
+        "x": 730,
+        "y": 120
+      },
+      "baseTable": false
+    },
+    {
+      "fields": [
+        {
+          "id": "BE952112-99B5-6345-985A-4481B63FA020",
+          "name": "VendorID_Add_t"
+        },
+        {
+          "id": "BBB54156-EB1F-2142-B717-6E5DD8143335",
+          "name": "VendorCountryName_t"
+        },
+        {
+          "id": "AA75543E-EEB5-B34F-A4D5-2135FBDC57EF",
+          "name": "VendorCountryID_t"
+        },
+        {
+          "id": "258C46AD-CAA7-7E44-8896-56700C2615D7",
+          "name": "VendorDistrict_t"
+        },
+        {
+          "id": "61931C14-C682-E745-B784-B0B03008698B",
+          "name": "VendorPinCode_t"
+        }
+      ],
+      "id": "307CF283-A07B-8248-9263-809FB3B08DCD",
+      "name": "VendorAddress",
+      "position": {
+        "x": 720,
+        "y": 310
+      },
+      "baseTable": false
+    }
+  ],
+  "links": [
+    {
+      "id": "51cb25c9-565d-461a-8097-15f74410442f",
+      "source": "F69E020B-40BA-3546-8CB7-386BD175DDD3.R.D38AEB11-F9BC-6947-8E3C-EED1A36F299E",
+      "target": "904E8AD1-2FCB-444A-BBBC-2C4EA0F5EF9C.L.8AB620E1-7C7C-9444-AB9D-B55A51A66C6E",
+      "relation": "=",
+      "sourceTableName": "Order",
+      "sourceFieldName": "CustomerID_t",
+      "targetTableName": "Customer",
+      "targetFieldName": "Customer_ID"
+    },
+    {
+      "id": "1c794968-c4b9-44cf-8671-4daf69b992a1",
+      "source": "F69E020B-40BA-3546-8CB7-386BD175DDD3.R.7A0F6FD2-4247-3C4E-9798-FDD476DC321B",
+      "target": "76CD1D67-4E3D-584B-BBE2-3DC2AD5F9A0A.L.9F303315-7BB0-9649-94E3-061A699DDADE",
+      "relation": "=",
+      "sourceTableName": "Order",
+      "sourceFieldName": "VendorID_t",
+      "targetTableName": "Vendor",
+      "targetFieldName": "VendorID_t"
+    },
+    {
+      "id": "f0c417b6-1461-4b71-93ac-30884b66526b",
+      "source": "904E8AD1-2FCB-444A-BBBC-2C4EA0F5EF9C.R.25E013EB-363B-8A49-8F13-E063037B6E6F",
+      "target": "B48FE549-340B-1648-85F4-600FD2CC9C81.L.713E969F-7C00-5040-9D9B-9C021D746BFB",
+      "relation": "=",
+      "sourceTableName": "Customer",
+      "sourceFieldName": "CustomerAddressID_t",
+      "targetTableName": "CustomerAddress",
+      "targetFieldName": "CutomerID_Add_t"
+    }
+  ],
+  "sqlMap": [
+    {
+      "tableId": "F69E020B-40BA-3546-8CB7-386BD175DDD3",
+      "tableName": "Order",
+      "fields": [
+        {
+          "fieldId": "D38AEB11-F9BC-6947-8E3C-EED1A36F299E",
+          "fieldName": "CustomerID_t",
+          "sql": "SELECT \\\"CustomerID_t\\\" FROM \\\"Order\\\" WHERE \\\"OrderID_t\\\" = '\"&Order::OrderID_t&\"'",
+          "joinLevel": 0
+        },
+        {
+          "fieldId": "7A0F6FD2-4247-3C4E-9798-FDD476DC321B",
+          "fieldName": "VendorID_t",
+          "sql": "SELECT \\\"VendorID_t\\\" FROM \\\"Order\\\" WHERE \\\"OrderID_t\\\" = '\"&Order::OrderID_t&\"'",
+          "joinLevel": 0
+        },
+        {
+          "fieldId": "F7679CFC-F9E5-F24A-B160-86CE8FC218E6",
+          "fieldName": "OrderID_t",
+          "sql": "SELECT \\\"OrderID_t\\\" FROM \\\"Order\\\" WHERE \\\"OrderID_t\\\" = '\"&Order::OrderID_t&\"'",
+          "joinLevel": 0
+        },
+        {
+          "fieldId": "91916619-4EDE-104D-AC12-F1F862B588C3",
+          "fieldName": "PaymentStatus_t",
+          "sql": "SELECT \\\"PaymentStatus_t\\\" FROM \\\"Order\\\" WHERE \\\"OrderID_t\\\" = '\"&Order::OrderID_t&\"'",
+          "joinLevel": 0
+        },
+        {
+          "fieldId": "93AC43BC-3507-4042-9B98-7842BBAB5961",
+          "fieldName": "TotalAmount_n",
+          "sql": "SELECT \\\"TotalAmount_n\\\" FROM \\\"Order\\\" WHERE \\\"OrderID_t\\\" = '\"&Order::OrderID_t&\"'",
+          "joinLevel": 0
+        },
+        {
+          "fieldId": "78781947-82DB-4547-9162-D2D2BDB2BD29",
+          "fieldName": "RecePaidTotalAmount",
+          "sql": "SELECT \\\"RecePaidTotalAmount\\\" FROM \\\"Order\\\" WHERE \\\"OrderID_t\\\" = '\"&Order::OrderID_t&\"'",
+          "joinLevel": 0
+        },
+        {
+          "fieldId": "80CF8A1D-8CD1-5E4B-A3B5-0C9092442DD7",
+          "fieldName": "PaidAmount_n",
+          "sql": "SELECT \\\"PaidAmount_n\\\" FROM \\\"Order\\\" WHERE \\\"OrderID_t\\\" = '\"&Order::OrderID_t&\"'",
+          "joinLevel": 0
+        },
+        {
+          "fieldId": "A867B34C-C4A7-1D4E-BFD5-3CDA46854463",
+          "fieldName": "DueAmount_n",
+          "sql": "SELECT \\\"DueAmount_n\\\" FROM \\\"Order\\\" WHERE \\\"OrderID_t\\\" = '\"&Order::OrderID_t&\"'",
+          "joinLevel": 0
+        }
+      ]
+    },
+    {
+      "tableId": "904E8AD1-2FCB-444A-BBBC-2C4EA0F5EF9C",
+      "tableName": "Customer",
+      "fields": [
+        {
+          "fieldId": "8AB620E1-7C7C-9444-AB9D-B55A51A66C6E",
+          "fieldName": "Customer_ID",
+          "sql": "SELECT \\\"Customer_ID\\\" FROM \\\"Customer\\\" WHERE \\\"Customer_ID\\\" = '\"&Order::CustomerID_t&\"'",
+          "joinLevel": 1
+        },
+        {
+          "fieldId": "25E013EB-363B-8A49-8F13-E063037B6E6F",
+          "fieldName": "CustomerAddressID_t",
+          "sql": "SELECT \\\"CustomerAddressID_t\\\" FROM \\\"Customer\\\" WHERE \\\"Customer_ID\\\" = '\"&Order::CustomerID_t&\"'",
+          "joinLevel": 1
+        },
+        {
+          "fieldId": "E6ED4986-C545-9C46-B5A5-784307EE9BBD",
+          "fieldName": "CustomerName_t",
+          "sql": "SELECT \\\"CustomerName_t\\\" FROM \\\"Customer\\\" WHERE \\\"Customer_ID\\\" = '\"&Order::CustomerID_t&\"'",
+          "joinLevel": 1
+        },
+        {
+          "fieldId": "3173FB22-DA42-7648-8548-7BBA11365AE1",
+          "fieldName": "CustomerEmail_t",
+          "sql": "SELECT \\\"CustomerEmail_t\\\" FROM \\\"Customer\\\" WHERE \\\"Customer_ID\\\" = '\"&Order::CustomerID_t&\"'",
+          "joinLevel": 1
+        },
+        {
+          "fieldId": "74EAA607-6DEC-0240-80B9-77B97C3D6FCD",
+          "fieldName": "CustomerRating_n",
+          "sql": "SELECT \\\"CustomerRating_n\\\" FROM \\\"Customer\\\" WHERE \\\"Customer_ID\\\" = '\"&Order::CustomerID_t&\"'",
+          "joinLevel": 1
+        },
+        {
+          "fieldId": "DAF43CF6-AC49-FB4F-B473-AE46FAD53059",
+          "fieldName": "CustomerNote_t",
+          "sql": "SELECT \\\"CustomerNote_t\\\" FROM \\\"Customer\\\" WHERE \\\"Customer_ID\\\" = '\"&Order::CustomerID_t&\"'",
+          "joinLevel": 1
+        },
+        {
+          "fieldId": "83BBBDAC-A109-2945-A1F6-E7F9B31A425F",
+          "fieldName": "CustomerMobile_t",
+          "sql": "SELECT \\\"CustomerMobile_t\\\" FROM \\\"Customer\\\" WHERE \\\"Customer_ID\\\" = '\"&Order::CustomerID_t&\"'",
+          "joinLevel": 1
+        }
+      ]
+    },
+    {
+      "tableId": "76CD1D67-4E3D-584B-BBE2-3DC2AD5F9A0A",
+      "tableName": "Vendor",
+      "fields": [
+        {
+          "fieldId": "9F303315-7BB0-9649-94E3-061A699DDADE",
+          "fieldName": "VendorID_t",
+          "sql": "SELECT \\\"VendorID_t\\\" FROM \\\"Vendor\\\" WHERE \\\"VendorID_t\\\" = '\"&Order::VendorID_t&\"'",
+          "joinLevel": 1
+        },
+        {
+          "fieldId": "2DE6C498-9E47-0C47-A0AB-3B53A5CA32D1",
+          "fieldName": "VendorName_t",
+          "sql": "SELECT \\\"VendorName_t\\\" FROM \\\"Vendor\\\" WHERE \\\"VendorID_t\\\" = '\"&Order::VendorID_t&\"'",
+          "joinLevel": 1
+        },
+        {
+          "fieldId": "9ED25922-900E-CB4A-BC2F-AA1A30486FA2",
+          "fieldName": "VendorEmail_t",
+          "sql": "SELECT \\\"VendorEmail_t\\\" FROM \\\"Vendor\\\" WHERE \\\"VendorID_t\\\" = '\"&Order::VendorID_t&\"'",
+          "joinLevel": 1
+        },
+        {
+          "fieldId": "F8B937BA-431B-2B4C-8176-266642EFC316",
+          "fieldName": "MobileNo_t",
+          "sql": "SELECT \\\"MobileNo_t\\\" FROM \\\"Vendor\\\" WHERE \\\"VendorID_t\\\" = '\"&Order::VendorID_t&\"'",
+          "joinLevel": 1
+        },
+        {
+          "fieldId": "53A2EABB-2B99-264B-8672-8A6B488F90DF",
+          "fieldName": "VendorAddressID_t",
+          "sql": "SELECT \\\"VendorAddressID_t\\\" FROM \\\"Vendor\\\" WHERE \\\"VendorID_t\\\" = '\"&Order::VendorID_t&\"'",
+          "joinLevel": 1
+        }
+      ]
+    }
+  ]
+}
