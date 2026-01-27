@@ -20,7 +20,7 @@ app.use('/demoJSON', express.static(path.join(__dirname, 'demoJSON')));
 
 // Default route
 app.get('/', (req, res) => {
-  res.redirect('/erd');
+  res.sendFile(path.join(__dirname, 'server.html'));
 });
 
 app.listen(PORT, () => {
