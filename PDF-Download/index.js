@@ -161,17 +161,17 @@ async function generatePdf() {
 
   let data = [...reportData];
   let cursorY = 0;
-  
+
   // Grouping Variables
   let currentGroup = null;
   // This object will hold dynamic sums for the current group: { "PaidAmount_n": 100, "DueAmount_n": 50 }
-  let currentGroupTotals = {}; 
+  let currentGroupTotals = {};
 
   // --- PRE-CALCULATION (GRAND TOTALS) ---
   // We calculate totals for EVERY field in the dataset upfront.
   // This allows the Header (which prints first) to know the Grand Totals.
   const globalTotals = {};
-  
+
   data.forEach(row => {
     Object.keys(row).forEach(key => {
       const val = parseFloat(row[key]);
@@ -228,7 +228,7 @@ async function generatePdf() {
         // 1. We look at the JSON Schema to see WHICH field this element wants (el.field)
         // 2. We look at the passed 'aggregates' object to find that value.
         // 3. This works for ANY field, without hardcoding names in JavaScript.
-        
+
         const fieldName = el.field; // e.g., "DueAmount_n" or "PaidAmount_n"
         const val = (aggregates && aggregates[fieldName]) ? aggregates[fieldName] : 0;
 
@@ -251,7 +251,7 @@ async function generatePdf() {
   }
 
   // --- START RENDERING ---
-  
+
   // 1. Header: Render once. Pass 'globalTotals' so it can display Grand Totals if requested.
   renderPart('header', null, globalTotals);
 
@@ -261,7 +261,7 @@ async function generatePdf() {
 
     // --- CHECK FOR GROUP CHANGE ---
     if (currentLayout.grouping.enabled && groupVal !== currentGroup) {
-      
+
       // If closing a previous group, print its footer
       if (currentGroup !== null) {
         renderPart('group-footer', null, currentGroupTotals);
@@ -312,162 +312,192 @@ async function generatePdf() {
 function simulateFileMakerInput() {
   const dummyPayload = {
   "columnHeader": [
-    "InvoiceID",
-    "Date_d",
-    "Region_t",
-    "Category_t",
-    "Product_t",
-    "Qty_n",
-    "UnitPrice_n",
-    "TotalLine_n"
+    "CustomerDistrict_t",
+    "CustomerName_t",
+    "DueAmount_n",
+    "OrderID_t",
+    "PaidAmount_n"
   ],
   "bodyData": [
-    "INV-1001^2023-10-01^East^Electronics^Laptop^2^1200.00^2400.00",
-    "INV-1002^2023-10-01^East^Accessories^Mouse^10^25.00^250.00",
-    "INV-1003^2023-10-02^East^Furniture^Desk^1^450.00^450.00",
-    "INV-1004^2023-10-03^East^Electronics^Monitor^2^300.00^600.00",
-    "INV-1005^2023-10-05^East^Accessories^Keyboard^5^50.00^250.00",
-    "INV-1006^2023-10-06^East^Furniture^Chair^4^150.00^600.00",
-    "INV-1007^2023-10-01^North^Electronics^Laptop^1^1200.00^1200.00",
-    "INV-1008^2023-10-02^North^Furniture^Desk^2^400.00^800.00",
-    "INV-1009^2023-10-03^North^Electronics^Headphones^5^100.00^500.00",
-    "INV-1010^2023-10-04^North^Accessories^USB Hub^10^20.00^200.00",
-    "INV-1011^2023-10-05^North^Furniture^Bookshelf^2^150.00^300.00",
-    "INV-1012^2023-10-06^North^Electronics^Tablet^3^300.00^900.00",
-    "INV-1013^2023-10-07^North^Accessories^Webcam^4^60.00^240.00",
-    "INV-1014^2023-10-08^North^Furniture^Chair^6^120.00^720.00",
-    "INV-1015^2023-10-01^South^Electronics^Projector^1^800.00^800.00",
-    "INV-1016^2023-10-02^South^Accessories^Cable Pack^20^10.00^200.00",
-    "INV-1017^2023-10-03^South^Furniture^Cabinet^1^350.00^350.00",
-    "INV-1018^2023-10-04^South^Electronics^Laptop^3^1100.00^3300.00",
-    "INV-1019^2023-10-05^South^Accessories^Mousepad^50^5.00^250.00",
-    "INV-1020^2023-10-01^West^Electronics^Phone^4^800.00^3200.00",
-    "INV-1021^2023-10-02^West^Electronics^Laptop^2^1250.00^2500.00",
-    "INV-1022^2023-10-03^West^Furniture^Standing Desk^1^600.00^600.00",
-    "INV-1023^2023-10-04^West^Accessories^Monitor Arm^2^80.00^160.00",
-    "INV-1024^2023-10-05^West^Electronics^Tablet^5^250.00^1250.00",
-    "INV-1025^2023-10-06^West^Furniture^Ergo Chair^2^500.00^1000.00",
-    "INV-1026^2023-10-07^West^Accessories^Docking Stn^3^150.00^450.00",
-    "INV-1027^2023-10-08^West^Electronics^Speaker^4^100.00^400.00",
-    "INV-1028^2023-10-09^West^Furniture^Lamp^10^30.00^300.00",
-    "INV-1029^2023-10-10^West^Accessories^Headset^5^80.00^400.00",
-    "INV-1030^2023-10-11^West^Electronics^Charger^15^20.00^300.00"
+    // --- California ---
+    "California^Cyberdyne Systems^0^ORD-9001^15500",
+    "California^Cyberdyne Systems^2500^ORD-9002^5000",
+    "California^Silicon Valley Traders^12000^ORD-9003^42000",
+    "California^Silicon Valley Traders^0^ORD-9004^11500",
+    "California^Bay Area Logistics^500^ORD-9005^3200",
+    "California^Bay Area Logistics^0^ORD-9006^8900",
+    "California^Sarah Connor^150^ORD-9007^450",
+    "California^Mick^0^ORD-9008^201500",
+    "California^Mick^331500^ORD-9009^3000",
+    
+    // --- New South Wales ---
+    
+    "New South Wales^Skeletor Inc^5000^ORD-8002^1000",
+    "New South Wales^Castle Grayskull^0^ORD-8003^50000",
+    
+    // --- Ontario ---
+    "Ontario^Jhos Miller^18667^ORD-7001^2383",
+    "Ontario^Jhos Miller^27180^ORD-7002^2220",
+    "Ontario^Jhos Miller^29600^ORD-7003^3250",
+    "Ontario^Jhos Miller^130000^ORD-7004^2500",
+    "New South Wales^He Man^14300^ORD-8001^3000",
+    "Ontario^Jhos Miller^140000^ORD-7005^127750",
+    "Ontario^Maple Leaf Goods^250^ORD-7006^1250",
+    "Ontario^Toronto Traders^0^ORD-7007^8500",
+    "Ontario^Toronto Traders^5000^ORD-7008^2300",
+    
+    // --- Texas ---
+    "Texas^Lone Star Logistics^0^ORD-6001^55000",
+    "Texas^Lone Star Logistics^1200^ORD-6002^4500",
+    "Texas^Houston Energy^25000^ORD-6003^12000",
+    "Texas^Austin Tech Hub^0^ORD-6004^9800",
+    "Texas^Austin Tech Hub^500^ORD-6005^1500",
+    "Texas^Ranger Rick^0^ORD-6006^350",
+    
+    // --- West champaran ---
+    "West champaran^Alice Jhonson^10695^ORD-5001^2555",
+    "West champaran^Alice Jhonson^15750^ORD-5002^1500",
+    "West champaran^Alice Jhonson^249000^ORD-5003^27000",
+    "West champaran^Alice Jhonson^560000^ORD-5004^5000",
+    "West champaran^Emily^0^ORD-5005^89700",
+    "West champaran^Emily^17200^ORD-5006^3500",
+    "West champaran^Emily^44050^ORD-5007^1200",
+    "West champaran^Emily^126200^ORD-5008^1000",
+    "West champaran^Emily^170000^ORD-5009^8500"
   ],
   "schemaJson": {
     "grouping": {
       "enabled": true,
-      "field": "Region_t"
+      "field": "CustomerDistrict_t"
     },
     "parts": {
       "header": {
-        "height": 80,
+        "height": 101,
         "elements": [
           {
             "type": "label",
-            "content": "SALES PERFORMANCE REPORT",
-            "x": 20, "y": 20, "fontSize": 18, "bold": true
-          },
-          {
-            "type": "label",
-            "content": "Grand Total Revenue:",
-            "x": 350, "y": 25, "fontSize": 12, "bold": true
-          },
-          {
-            "type": "calculation",
-            "field": "TotalLine_n", 
-            "x": 480, "y": 25, "fontSize": 14, "bold": true,
-            "function": "SUM"
-          },
-          {
-            "type": "label",
-            "content": "Date", "x": 20, "y": 60, "fontSize": 10, "bold": true, "underline": true
-          },
-          {
-            "type": "label",
-            "content": "Product", "x": 100, "y": 60, "fontSize": 10, "bold": true, "underline": true
-          },
-          {
-            "type": "label",
-            "content": "Category", "x": 250, "y": 60, "fontSize": 10, "bold": true, "underline": true
-          },
-          {
-            "type": "label",
-            "content": "Qty", "x": 380, "y": 60, "fontSize": 10, "bold": true, "underline": true
-          },
-          {
-            "type": "label",
-            "content": "Total", "x": 450, "y": 60, "fontSize": 10, "bold": true, "underline": true
+            "key": null,
+            "content": "Report by district",
+            "x": 260,
+            "y": 33,
+            "w": 150,
+            "h": 25,
+            "function": null,
+            "field": null,
+            "fontSize": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false
           }
         ]
       },
       "group-header": {
-        "height": 30,
+        "height": 41,
         "elements": [
           {
             "type": "field",
-            "key": "Region_t",
-            "x": 20, "y": 5, "fontSize": 12, "bold": true, "italic": true
-          }
-        ]
-      },
-      "body": {
-        "height": 25,
-        "elements": [
-          { "type": "field", "key": "Date_d", "x": 20, "y": 5, "fontSize": 10 },
-          { "type": "field", "key": "Product_t", "x": 100, "y": 5, "fontSize": 10 },
-          { "type": "field", "key": "Category_t", "x": 250, "y": 5, "fontSize": 10 },
-          { "type": "field", "key": "Qty_n", "x": 380, "y": 5, "fontSize": 10 },
-          { "type": "field", "key": "TotalLine_n", "x": 450, "y": 5, "fontSize": 10 }
-        ]
-      },
-      "group-footer": {
-        "height": 40,
-        "elements": [
-          {
-            "type": "label",
-            "content": "Region Summary:",
-            "x": 150, "y": 5, "fontSize": 10, "italic": true
-          },
-          {
-            "type": "label",
-            "content": "Total Qty:",
-            "x": 300, "y": 5, "fontSize": 10, "bold": true
-          },
-          {
-            "type": "calculation",
-            "field": "Qty_n",
-            "x": 355, "y": 5, "fontSize": 10, "bold": true
-          },
-          {
-            "type": "label",
-            "content": "Total Rev:",
-            "x": 400, "y": 5, "fontSize": 10, "bold": true
-          },
-          {
-            "type": "calculation",
-            "field": "TotalLine_n",
-            "x": 460, "y": 5, "fontSize": 10, "bold": true,
+            "key": "CustomerDistrict_t",
+            "content": "[CustomerDistrict_t]",
+            "x": 17,
+            "y": 3,
+            "w": 150,
+            "h": 25,
+            "function": null,
+            "field": null,
+            "fontSize": 14,
+            "bold": true,
+            "italic": true,
             "underline": true
           }
         ]
       },
-      "footer": {
-        "height": 40,
+      "body": {
+        "height": 61,
         "elements": [
           {
-            "type": "label",
-            "content": "End of Report",
-            "x": 250, "y": 10, "fontSize": 10, "italic": true
-          },
-           {
-            "type": "label",
-            "content": "Grand Total Qty Sold:",
-            "x": 20, "y": 10, "fontSize": 10
+            "type": "field",
+            "key": "OrderID_t",
+            "content": "[OrderID_t]",
+            "x": 487,
+            "y": 9,
+            "w": 60,
+            "h": 27,
+            "function": null,
+            "field": null,
+            "fontSize": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false
           },
           {
+            "type": "field",
+            "key": "PaidAmount_n",
+            "content": "[PaidAmount_n]",
+            "x": 292,
+            "y": 11,
+            "w": 150,
+            "h": 25,
+            "function": null,
+            "field": null,
+            "fontSize": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false
+          },
+          {
+            "type": "field",
+            "key": "CustomerName_t",
+            "content": "[CustomerName_t]",
+            "x": 6,
+            "y": 12,
+            "w": 150,
+            "h": 25,
+            "function": null,
+            "field": null,
+            "fontSize": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false
+          }
+        ]
+      },
+      "group-footer": {
+        "height": 55,
+        "elements": [
+          {
             "type": "calculation",
-            "field": "Qty_n",
-            "x": 120, "y": 10, "fontSize": 10, "bold": true
+            "key": null,
+            "content": "[]",
+            "x": 293,
+            "y": 7,
+            "w": 150,
+            "h": 25,
+            "function": "SUM",
+            "field": "PaidAmount_n",
+            "fontSize": 14,
+            "bold": true,
+            "italic": false,
+            "underline": false
+          }
+        ]
+      },
+      "footer": {
+        "height": 61,
+        "elements": [
+          {
+            "type": "calculation",
+            "key": null,
+            "content": "[]",
+            "x": 290,
+            "y": 12,
+            "w": 150,
+            "h": 25,
+            "function": "SUM",
+            "field": "PaidAmount_n",
+            "fontSize": 18,
+            "bold": true,
+            "italic": false,
+            "underline": false
           }
         ]
       }

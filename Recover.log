@@ -17165,3 +17165,18 @@
 2026-01-21 11:16:27.244 +0530	OrderSysPOC.fmp12	8432	Page 1457 marked free but not in free list
 2026-01-21 11:16:27.245 +0530	OrderSysPOC.fmp12	0	Reset maximum block sequence number to 54960135
 2026-01-21 11:16:27.248 +0530	OrderSysPOC.fmp12	0	*** Completed consistency check, checked 1460 block(s)
+2026-01-28 13:30:48.191 +0530	FlexiReports.fmp12	0	*** Started consistency check of improperly closed file, total of 520 block(s) to check
+2026-01-28 13:30:48.193 +0530	FlexiReports.fmp12	8432	Page 509 marked free but not in free list
+2026-01-28 13:30:48.193 +0530	FlexiReports.fmp12	8432	Page 510 marked free but not in free list
+2026-01-28 13:30:48.193 +0530	FlexiReports.fmp12	8432	Page 511 marked free but not in free list
+2026-01-28 13:30:48.193 +0530	FlexiReports.fmp12	8432	Page 512 marked free but not in free list
+2026-01-28 13:30:48.193 +0530	FlexiReports.fmp12	8432	Page 513 marked free but not in free list
+2026-01-28 13:30:48.193 +0530	FlexiReports.fmp12	8432	Page 514 marked free but not in free list
+2026-01-28 13:30:48.194 +0530	FlexiReports.fmp12	8432	Page 515 marked free but not in free list
+2026-01-28 13:30:48.195 +0530	FlexiReports.fmp12	8432	Page 516 marked free but not in free list
+2026-01-28 13:30:48.195 +0530	FlexiReports.fmp12	8432	Page 517 marked free but not in free list
+2026-01-28 13:30:48.196 +0530	FlexiReports.fmp12	8432	Page 518 marked free but not in free list
+2026-01-28 13:30:48.197 +0530	FlexiReports.fmp12	8432	Page 519 marked free but not in free list
+2026-01-28 13:30:48.198 +0530	FlexiReports.fmp12	8432	Page 520 marked free but not in free list
+2026-01-28 13:30:48.199 +0530	FlexiReports.fmp12	0	Reset maximum block sequence number to 16899891
+2026-01-28 13:30:48.200 +0530	FlexiReports.fmp12	0	*** Completed consistency check, checked 520 block(s)
