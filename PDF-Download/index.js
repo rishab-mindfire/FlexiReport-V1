@@ -1,10 +1,12 @@
 // --------------------------------------------------------------------------------------------------
-// --------------------------------------------------------------------------------------------------
 //generate single line Query for all selected fields
+// --------------------------------------------------------------------------------------------------
+
 function generateSingleLineQuery(sqlMap) {
   const aliasMap = {};
   const joins = [];
   const fields = [];
+  const columnHeaders = [];
   let whereClause = '';
   let contextTable = '';
   let basePrimaryKey = '';
@@ -59,6 +61,7 @@ function generateSingleLineQuery(sqlMap) {
       }
 
       fields.push(`${t2}.\\"${fieldName}\\"`);
+      columnHeaders.push(fieldName);
       return;
     }
 
@@ -70,7 +73,6 @@ function generateSingleLineQuery(sqlMap) {
     if (direct) {
       const [_, t1Tbl, t1Fk, bTbl, bPk] = direct;
 
-      // Only assign basePrimaryKey if it's the context table
       if (!basePrimaryKey && t1Tbl === contextTable) basePrimaryKey = bPk;
 
       if (t1Tbl === contextTable) {
@@ -84,10 +86,11 @@ function generateSingleLineQuery(sqlMap) {
         }
         fields.push(`${t1}.\\"${fieldName}\\"`);
       }
+      columnHeaders.push(fieldName);
     }
   });
 
-  // 3️⃣ Build WHERE clause using correct primary key
+  // 3️⃣ Build WHERE clause
   if (!basePrimaryKey) {
     console.error('Could not detect primary key for context table');
     return null;
@@ -100,6 +103,7 @@ function generateSingleLineQuery(sqlMap) {
     sqlString:
       `SELECT DISTINCT ${fields.join(', ')} FROM \\"${contextTable}\\" AS ${t0} ${joins.join(' ')} ${whereClause}`.trim(),
     sqlParameter: `${contextTable}::${basePrimaryKey}`,
+    columnHeaders: columnHeaders,
   };
 }
 
@@ -116,7 +120,6 @@ window.generateSingleLineQueryForFM = function (sqlMap) {
 
 //----------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------
-
 // Global variable to store processed data and layout
 let reportData = [];
 let currentLayout = {

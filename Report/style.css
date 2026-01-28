@@ -109,7 +109,7 @@ button.secondary {
   justify-content: center;
 }
 .design-page {
-  width: 794px;
+  width: 595px;
   background: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   display: flex;
@@ -286,7 +286,7 @@ button.secondary {
 
 /* Force the Preview Page to match Design width */
 .report-page {
-  width: 794px; /* A4 width in pixels */
+  width: 595px; /* A4 width in pixels */
   margin: 0 auto;
   background: white;
   min-height: 1123px; /* A4 height approx */
@@ -301,7 +301,7 @@ button.secondary {
 }
 /* Ensure parts don't shrink */
 [class^='r-part-'] {
-  width: 794px !important;
+  width: 595px !important;
   flex-shrink: 0;
   position: relative;
 }
@@ -356,7 +356,9 @@ button.secondary {
   outline: none;
   cursor: pointer;
 
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 /* Hover */
