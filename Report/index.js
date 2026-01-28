@@ -472,7 +472,7 @@ const Actions = {
 
     const previewPage = document.createElement('div');
     previewPage.style.cssText =
-      'background: white; width: 794px; margin: 0 auto; display: flex; flex-direction: column; min-height: 100%; box-shadow: 0 0 10px rgba(0,0,0,0.1);';
+      'background: white; width: 595px; margin: 0 auto; display: flex; flex-direction: column; min-height: 100%; box-shadow: 0 0 10px rgba(0,0,0,0.1);';
 
     // Use synced store values
     const isGrouping = Store.grouping.enabled && Store.grouping.field;
