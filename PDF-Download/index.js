@@ -7,105 +7,120 @@ function generateSingleLineQuery(sqlMap) {
   const joins = [];
   const fields = [];
   const columnHeaders = [];
-  let whereClause = '';
   let contextTable = '';
-  let basePrimaryKey = '';
+  let wherePrimaryKey = '';
+  let aliasCounter = 0;
 
-  // 1️⃣ Identify context table (t0)
+  // 1️⃣ Detect context table
   for (const sql of Object.values(sqlMap)) {
-    const contextMatch = sql.match(/'"&([^:]+)::/i);
-    if (contextMatch) {
-      contextTable = contextMatch[1];
+    const match = sql.match(/'"&([^:]+)::/);
+    if (match) {
+      contextTable = match[1];
       break;
     }
   }
 
-  if (!contextTable) {
-    console.error('Context table not found');
-    return null;
-  }
+  if (!contextTable) return null;
 
-  const getAlias = (tbl, lvl) => {
-    if (!aliasMap[tbl]) aliasMap[tbl] = `t${lvl}`;
+  const getAlias = (tbl) => {
+    if (!aliasMap[tbl]) {
+      aliasMap[tbl] = `t${aliasCounter++}`;
+    }
     return aliasMap[tbl];
   };
 
-  const t0 = getAlias(contextTable, 0);
+  const t0 = getAlias(contextTable);
 
-  // 2️⃣ Process each SQL entry
+  // 2️⃣ Process SQL map
   Object.values(sqlMap).forEach((sql) => {
-    const fieldName = sql.match(/SELECT\s+\\"([^"]+)\\"/i)?.[1];
+    const fieldName = sql.match(/SELECT\s+\\"([^"]+)\\"/)?.[1];
     if (!fieldName) return;
 
-    // --- Nested query detection ---
-    const nest = sql.match(
-      /FROM\s+\\"([^"]+)\\"\s+WHERE\s+\\"([^"]+)\\"\s*=\s*\(\s*SELECT\s+\\"([^"]+)\\"\s+FROM\s+\\"([^"]+)\\"\s+WHERE\s+\\"([^"]+)\\"\s*=\s*'"\&([^:]+)::([^&]+)\&"'/i,
+    // ---- 2 LEVEL JOIN ----
+    const nested = sql.match(
+      /FROM\s+\\"([^"]+)\\"\s+WHERE\s+\\"([^"]+)\\"\s*=\s*\(\s*SELECT\s+\\"([^"]+)\\"\s+FROM\s+\\"([^"]+)\\"\s+WHERE\s+\\"([^"]+)\\"\s*=\s*'"\&([^:]+)::([^&]+)\&"'/,
     );
 
-    if (nest) {
-      const [_, t2Tbl, t2Fk, t1Pk, t1Tbl, t1Fk, bTbl, bPk] = nest;
-      if (!basePrimaryKey && t1Tbl === contextTable) basePrimaryKey = bPk;
+    if (nested) {
+      const [_, t2Tbl, t2Fk, t1Pk, t1Tbl, t1Fk, bTbl, bPk] = nested;
 
-      const t1 = getAlias(t1Tbl, 1);
-      const t2 = getAlias(t2Tbl, 2);
+      const t1 = getAlias(t1Tbl);
+      const t2 = getAlias(t2Tbl);
 
-      if (!joins.find((j) => j.includes(`AS ${t1}`))) {
-        joins.push(
-          `LEFT JOIN \\"${t1Tbl}\\" AS ${t1} ON ${t0}.\\"${bPk}\\" = ${t1}.\\"${t1Fk}\\"`,
-        );
-      }
-      if (!joins.find((j) => j.includes(`AS ${t2}`))) {
-        joins.push(
-          `LEFT JOIN \\"${t2Tbl}\\" AS ${t2} ON ${t2}.\\"${t2Fk}\\" = ${t1}.\\"${t1Pk}\\"`,
-        );
-      }
+      const join1 = `LEFT JOIN \\"${t1Tbl}\\" AS ${t1} ON ${t0}.\\"${bPk}\\" = ${t1}.\\"${t1Fk}\\"`;
+      const join2 = `LEFT JOIN \\"${t2Tbl}\\" AS ${t2} ON ${t2}.\\"${t2Fk}\\" = ${t1}.\\"${t1Pk}\\"`;
+
+      if (!joins.includes(join1)) joins.push(join1);
+      if (!joins.includes(join2)) joins.push(join2);
 
       fields.push(`${t2}.\\"${fieldName}\\"`);
       columnHeaders.push(fieldName);
       return;
     }
 
-    // --- Direct query detection ---
+    // ---- DIRECT JOIN ----
     const direct = sql.match(
-      /FROM\s+\\"([^"]+)\\"\s+WHERE\s+\\"([^"]+)\\"\s*=\s*'"\&([^:]+)::([^&]+)\&"'/i,
+      /FROM\s+\\"([^"]+)\\"\s+WHERE\s+\\"([^"]+)\\"\s*=\s*'"\&([^:]+)::([^&]+)\&"'/,
     );
 
     if (direct) {
       const [_, t1Tbl, t1Fk, bTbl, bPk] = direct;
 
-      if (!basePrimaryKey && t1Tbl === contextTable) basePrimaryKey = bPk;
+      // ✅ ONLY this defines WHERE key
+      if (t1Tbl === contextTable && fieldName === bPk) {
+        wherePrimaryKey = bPk;
+      }
 
       if (t1Tbl === contextTable) {
         fields.push(`${t0}.\\"${fieldName}\\"`);
       } else {
-        const t1 = getAlias(t1Tbl, 1);
-        if (!joins.find((j) => j.includes(`AS ${t1}`))) {
-          joins.push(
-            `LEFT JOIN \\"${t1Tbl}\\" AS ${t1} ON ${t0}.\\"${bPk}\\" = ${t1}.\\"${t1Fk}\\"`,
-          );
-        }
+        const t1 = getAlias(t1Tbl);
+        const join = `LEFT JOIN \\"${t1Tbl}\\" AS ${t1} ON ${t0}.\\"${bPk}\\" = ${t1}.\\"${t1Fk}\\"`;
+        if (!joins.includes(join)) joins.push(join);
         fields.push(`${t1}.\\"${fieldName}\\"`);
       }
+
       columnHeaders.push(fieldName);
     }
   });
 
-  // 3️⃣ Build WHERE clause
-  if (!basePrimaryKey) {
-    console.error('Could not detect primary key for context table');
+  // 3️⃣ Build WHERE clause (STRICT)
+  if (!wherePrimaryKey) {
+    console.error('No valid context primary key found');
     return null;
   }
 
-  whereClause = `WHERE ${t0}.\\"${basePrimaryKey}\\" = ?`;
+  const whereClause = `WHERE ${t0}.\\"${wherePrimaryKey}\\" = ?`;
 
-  // 4️⃣ Return FileMaker-ready object
   return {
-    sqlString:
-      `SELECT DISTINCT ${fields.join(', ')} FROM \\"${contextTable}\\" AS ${t0} ${joins.join(' ')} ${whereClause}`.trim(),
-    sqlParameter: `${contextTable}::${basePrimaryKey}`,
-    columnHeaders: columnHeaders,
+    sqlString: `SELECT DISTINCT ${fields.join(', ')} FROM \\"${contextTable}\\" AS ${t0} ${joins.join(' ')} ${whereClause}`,
+    sqlParameter: `${contextTable}::${wherePrimaryKey}`,
+    columnHeaders,
   };
 }
+
+const dummySqlMap = {
+  CustomerDistrict_t:
+    'SELECT \\"CustomerDistrict_t\\" FROM \\"CustomerAddress\\" WHERE \\"CutomerID_Add_t\\" = (SELECT \\"CustomerAddressID_t\\" FROM \\"Customer\\" WHERE \\"Customer_ID\\" = \'"&Order::CustomerID_t&"\')',
+  CustomerEmail_t:
+    'SELECT \\"CustomerEmail_t\\" FROM \\"Customer\\" WHERE \\"Customer_ID\\" = \'"&Order::CustomerID_t&"\'',
+  CustomerName_t:
+    'SELECT \\"CustomerName_t\\" FROM \\"Customer\\" WHERE \\"Customer_ID\\" = \'"&Order::CustomerID_t&"\'',
+  DueAmount_n:
+    'SELECT \\"DueAmount_n\\" FROM \\"Order\\" WHERE \\"OrderID_t\\" = \'"&Order::OrderID_t&"\'',
+  OrderID_t:
+    'SELECT \\"OrderID_t\\" FROM \\"Order\\" WHERE \\"OrderID_t\\" = \'"&Order::OrderID_t&"\'',
+  PaidAmount_n:
+    'SELECT \\"PaidAmount_n\\" FROM \\"Order\\" WHERE \\"OrderID_t\\" = \'"&Order::OrderID_t&"\'',
+  VendorDistrict_t:
+    'SELECT \\"VendorDistrict_t\\" FROM \\"VendorAddress\\" WHERE \\"VendorID_Add_t\\" = (SELECT \\"VendorAddressID_t\\" FROM \\"Vendor\\" WHERE \\"VendorID_t\\" = \'"&Order::VendorID_t&"\')',
+};
+const dummSinglelineSql = () => {
+  const result = generateSingleLineQuery(dummySqlMap);
+  console.log(result.sqlString);
+};
+
+//------------------------------------------------------------------------------------------------------
 
 window.generateSingleLineQueryForFM = function (sqlMap) {
   const sqlSingleLineQuery = generateSingleLineQuery(JSON.parse(sqlMap));
@@ -176,7 +191,6 @@ function parseFileMakerData(keys, rows) {
 }
 
 // --- FUNCTION 3: PDF GENERATION ENGINE ---
-// --- FUNCTION 3: PDF GENERATION ENGINE (DYNAMIC CALCS) ---
 async function generatePdf() {
   if (!window.jspdf) return alert('Loading PDF engine...');
   const { jsPDF } = window.jspdf;
@@ -331,7 +345,7 @@ async function generatePdf() {
     iframe.style.width = '100%';
     iframe.style.height = '100vh';
     const blobUrl = doc.output('bloburl');
-    iframe.src = blobUrl + '#toolbar=1&view=FitH';
+    iframe.src = blobUrl + '#toolbar=1&view=Fit&zoom=60';
   }
 }
 
