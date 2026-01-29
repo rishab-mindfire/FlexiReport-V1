@@ -1,4 +1,3 @@
 /node_modules
-Import.log
-Recover.log
+*.log
 *.fmp12
