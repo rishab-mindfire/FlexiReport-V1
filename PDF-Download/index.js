@@ -331,7 +331,7 @@ async function generatePdf() {
     iframe.style.width = '100%';
     iframe.style.height = '100vh';
     const blobUrl = doc.output('bloburl');
-    iframe.src = blobUrl + '#toolbar=0&view=FitH';
+    iframe.src = blobUrl + '#toolbar=1&view=FitH';
   }
 }
 
