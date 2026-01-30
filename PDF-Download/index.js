@@ -197,90 +197,95 @@ async function generatePdf() {
   // 1. Setup PDF
   const doc = new jsPDF('p', 'pt', 'a4');
   const pageHeight = doc.internal.pageSize.getHeight();
-  const pageWidth = doc.internal.pageSize.getWidth();
-
+  
   let data = [...reportData];
   let cursorY = 0;
 
-  // Grouping Variables
-  let currentGroup = null;
-  // This object will hold dynamic sums for the current group: { "PaidAmount_n": 100, "DueAmount_n": 50 }
-  let currentGroupTotals = {};
-
-  // --- PRE-CALCULATION (GRAND TOTALS) ---
-  // We calculate totals for EVERY field in the dataset upfront.
-  // This allows the Header (which prints first) to know the Grand Totals.
+  // --- PRE-CALCULATION PHASE ---
   const globalTotals = {};
+  const globalCounts = {};
+  
+  // New: Store pre-calculated stats for every group
+  // Structure: { "California": { totals: {...}, counts: {...} }, "Texas": ... }
+  const groupStats = {}; 
 
+  const groupingField = currentLayout.grouping.enabled ? currentLayout.grouping.field : null;
+
+  // 2. Sort Data (Crucial for grouping)
+  if (groupingField) {
+    data.sort((a, b) =>
+      String(a[groupingField]).localeCompare(String(b[groupingField]))
+    );
+  }
+
+  // 3. Calculate Totals (Global AND Per Group)
   data.forEach((row) => {
+    const groupKey = groupingField ? row[groupingField] : 'ALL';
+
+    // Initialize group storage if new
+    if (!groupStats[groupKey]) {
+      groupStats[groupKey] = { totals: {}, counts: {} };
+    }
+
     Object.keys(row).forEach((key) => {
       const val = parseFloat(row[key]);
       if (!isNaN(val)) {
+        // A. Update Global Totals
         globalTotals[key] = (globalTotals[key] || 0) + val;
+        globalCounts[key] = (globalCounts[key] || 0) + 1;
+
+        // B. Update Group Totals (Pre-calculation)
+        groupStats[groupKey].totals[key] = (groupStats[groupKey].totals[key] || 0) + val;
+        groupStats[groupKey].counts[key] = (groupStats[groupKey].counts[key] || 0) + 1;
       }
     });
   });
 
-  // 2. Sort Data if grouping is enabled
-  if (currentLayout.grouping.enabled && currentLayout.grouping.field) {
-    data.sort((a, b) =>
-      String(a[currentLayout.grouping.field]).localeCompare(
-        String(b[currentLayout.grouping.field]),
-      ),
-    );
-  }
-
   // --- RENDER FUNCTION ---
-  // @param aggregates: An object containing sums (either globalTotals or currentGroupTotals)
-  function renderPart(partName, rowData, aggregates) {
+  function renderPart(partName, rowData, aggregates, counts) {
     const part = currentLayout.parts[partName];
     if (!part) return;
 
-    // --- AUTO-PAGE BREAK ---
+    // Auto-Page Break
     if (cursorY + part.height > pageHeight - 40) {
       doc.addPage();
       cursorY = 20;
-      // Note: We do NOT re-render the 'header' here, per your previous request.
     }
 
     part.elements.forEach((el) => {
       doc.setFontSize(el.fontSize || 12);
-      const fontStyle =
-        el.bold && el.italic
-          ? 'bolditalic'
-          : el.bold
-            ? 'bold'
-            : el.italic
-              ? 'italic'
-              : 'normal';
+      const fontStyle = (el.bold && el.italic) ? 'bolditalic' 
+                      : el.bold ? 'bold' 
+                      : el.italic ? 'italic' 
+                      : 'normal';
       doc.setFont('helvetica', fontStyle);
 
       let text = '';
 
-      // --- DYNAMIC CONTENT HANDLING ---
       if (el.type === 'label') {
         text = el.content;
       } else if (el.type === 'field') {
-        // Standard Field from Row Data
         let key = el.key || el.content.replace(/[\[\]]/g, '');
         text = rowData ? String(rowData[key] ?? '') : '';
       } else if (el.type === 'calculation') {
         // --- DYNAMIC CALCULATION ---
-        // 1. We look at the JSON Schema to see WHICH field this element wants (el.field)
-        // 2. We look at the passed 'aggregates' object to find that value.
-        // 3. This works for ANY field, without hardcoding names in JavaScript.
-
         const fieldName = el.field;
-        const val =
-          aggregates && aggregates[fieldName] ? aggregates[fieldName] : 0;
+        const sumVal = aggregates && aggregates[fieldName] ? aggregates[fieldName] : 0;
+        const countVal = counts && counts[fieldName] ? counts[fieldName] : 0;
 
-        text = val.toLocaleString(undefined, {
+        let finalVal = 0;
+        if (el.function === 'AVG') {
+           finalVal = countVal > 0 ? (sumVal / countVal) : 0;
+        } else {
+           finalVal = sumVal; // Default SUM
+        }
+
+        text = finalVal.toLocaleString(undefined, {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
         });
       }
 
-      // --- DRAW TEXT ---
       const absY = cursorY + el.y + el.fontSize;
       doc.text(text, el.x, absY);
 
@@ -292,51 +297,61 @@ async function generatePdf() {
     cursorY += part.height;
   }
 
-  // --- START RENDERING ---
+  // --- DRAW HORIZONTAL SEPARATOR ---
+  function drawSeparator() {
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const margin = 20;
+    doc.setDrawColor(200, 200, 200); // Light gray line
+    doc.line(margin, cursorY, pageWidth - margin, cursorY);
+    cursorY += 10; // Add spacing after the line
+  }
 
-  // 1. Header: Render once. Pass 'globalTotals' so it can display Grand Totals if requested.
-  renderPart('header', null, globalTotals);
+  // --- RENDERING LOOP ---
 
-  // 2. Body Loop
-  data.forEach((row) => {
-    const groupVal = row[currentLayout.grouping.field];
+  // 1. Header (Global Stats)
+  renderPart('header', null, globalTotals, globalCounts);
+  drawSeparator();
 
-    // --- CHECK FOR GROUP CHANGE ---
-    if (currentLayout.grouping.enabled && groupVal !== currentGroup) {
-      // If closing a previous group, print its footer
+  let currentGroup = null;
+
+  // 2. Body
+  data.forEach((row, index) => {
+    const groupVal = groupingField ? row[groupingField] : null;
+
+    // Check Group Change
+    if (groupingField && groupVal !== currentGroup) {
+      
+      // A. Close Previous Group (Footer)
       if (currentGroup !== null) {
-        renderPart('group-footer', null, currentGroupTotals);
+        // Retrieve stats for the group we are finishing
+        const prevStats = groupStats[currentGroup];
+        renderPart('group-footer', null, prevStats.totals, prevStats.counts);
+        drawSeparator();
       }
 
-      // Reset Group
+      // B. Open New Group (Header)
       currentGroup = groupVal;
-      currentGroupTotals = {}; // Clear totals for the new group
-
-      // Print new Group Header
-      renderPart('group-header', row, null);
+      // Retrieve stats for the NEW group (Pre-calculated!)
+      const newStats = groupStats[currentGroup];
+      
+      // Pass the PRE-CALCULATED stats to the header
+      renderPart('group-header', row, newStats.totals, newStats.counts);
+      drawSeparator();
     }
 
-    // Print Body Row
-    renderPart('body', row, null);
-
-    // --- ACCUMULATE GROUP TOTALS DYNAMICALLY ---
-    // Iterate over every field in the current row.
-    // If it's a number, add it to the running total for that field in this group.
-    Object.keys(row).forEach((key) => {
-      const val = parseFloat(row[key]);
-      if (!isNaN(val)) {
-        currentGroupTotals[key] = (currentGroupTotals[key] || 0) + val;
-      }
-    });
+    // C. Print Body
+    renderPart('body', row, null, null);
   });
 
   // 3. Final Group Footer
-  if (currentLayout.grouping.enabled && currentGroup !== null) {
-    renderPart('group-footer', null, currentGroupTotals);
+  if (groupingField && currentGroup !== null) {
+    const lastStats = groupStats[currentGroup];
+    renderPart('group-footer', null, lastStats.totals, lastStats.counts);
+    drawSeparator();
   }
 
-  // 4. Footer: Render once. Pass 'globalTotals'.
-  renderPart('footer', null, globalTotals);
+  // 4. Report Footer (Global Stats)
+  renderPart('footer', null, globalTotals, globalCounts);
 
   // --- OUTPUT ---
   const iframe = document.getElementById('preview');
@@ -449,6 +464,36 @@ function simulateFileMakerInput() {
               italic: true,
               underline: true,
             },
+            {
+              "type": "calculation",
+              "key": null,
+              "content": "[]",
+              "x": 14,
+              "y": 5,
+              "w": 150,
+              "h": 25,
+              "function": "AVG",
+              "field": "DueAmount_n",
+              "fontSize": 14,
+              "bold": false,
+              "italic": false,
+              "underline": false
+            },
+            {
+              "type": "calculation",
+              "key": null,
+              "content": "[]",
+              "x": 381,
+              "y": 5,
+              "w": 150,
+              "h": 25,
+              "function": "SUM",
+              "field": "DueAmount_n",
+              "fontSize": 14,
+              "bold": false,
+              "italic": false,
+              "underline": false
+            }
           ],
         },
         body: {
