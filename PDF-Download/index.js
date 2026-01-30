@@ -1,7 +1,6 @@
 // --------------------------------------------------------------------------------------------------
 //generate single line Query for all selected fields
 // --------------------------------------------------------------------------------------------------
-
 function generateSingleLineQuery(sqlMap) {
   const aliasMap = {};
   const joins = [];
@@ -11,7 +10,7 @@ function generateSingleLineQuery(sqlMap) {
   let wherePrimaryKey = '';
   let aliasCounter = 0;
 
-  // 1️⃣ Detect context table
+  // 1️ Detect context table
   for (const sql of Object.values(sqlMap)) {
     const match = sql.match(/'"&([^:]+)::/);
     if (match) {
@@ -31,7 +30,7 @@ function generateSingleLineQuery(sqlMap) {
 
   const t0 = getAlias(contextTable);
 
-  // 2️⃣ Process SQL map
+  // 2️ Process SQL map
   Object.values(sqlMap).forEach((sql) => {
     const fieldName = sql.match(/SELECT\s+\\"([^"]+)\\"/)?.[1];
     if (!fieldName) return;
@@ -66,7 +65,7 @@ function generateSingleLineQuery(sqlMap) {
     if (direct) {
       const [_, t1Tbl, t1Fk, bTbl, bPk] = direct;
 
-      // ✅ ONLY this defines WHERE key
+      //  ONLY this defines WHERE key
       if (t1Tbl === contextTable && fieldName === bPk) {
         wherePrimaryKey = bPk;
       }
@@ -84,7 +83,7 @@ function generateSingleLineQuery(sqlMap) {
     }
   });
 
-  // 3️⃣ Build WHERE clause (STRICT)
+  // 3️ Build WHERE clause (STRICT)
   if (!wherePrimaryKey) {
     console.error('No valid context primary key found');
     return null;
@@ -271,7 +270,7 @@ async function generatePdf() {
         // 2. We look at the passed 'aggregates' object to find that value.
         // 3. This works for ANY field, without hardcoding names in JavaScript.
 
-        const fieldName = el.field; // e.g., "DueAmount_n" or "PaidAmount_n"
+        const fieldName = el.field;
         const val =
           aggregates && aggregates[fieldName] ? aggregates[fieldName] : 0;
 
